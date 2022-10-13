@@ -1,2 +1,4 @@
-package com.example.hotelholidayv1.room;public class Room {
+package com.example.hotelholidayv1.room;
+
+public class Room {
 }

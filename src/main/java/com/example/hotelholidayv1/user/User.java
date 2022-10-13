@@ -1,2 +1,4 @@
-package com.example.hotelholidayv1.user;public class User {
+package com.example.hotelholidayv1.user;
+
+public class User {
 }

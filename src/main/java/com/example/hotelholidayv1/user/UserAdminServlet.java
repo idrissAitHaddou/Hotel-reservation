@@ -1,7 +1,9 @@
+package com.example.hotelholidayv1.user;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+
 import java.io.IOException;
 
 @WebServlet(name = "UserAdminServlet", value = "/UserAdminServlet")

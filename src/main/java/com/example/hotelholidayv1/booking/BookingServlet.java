@@ -1,4 +1,4 @@
-package com.example.hotelholidayv1.room;
+package com.example.hotelholidayv1.booking;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -6,8 +6,8 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "RoomServlet", value = "/RoomServlet")
-public class RoomServlet extends HttpServlet {
+@WebServlet(name = "BookingServlet", value = "/BookingServlet")
+public class BookingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
