@@ -1,4 +1,4 @@
-package com.example.hotelholidayv1;
+package com.example.hotelholidayv1.test;
 
 import java.io.*;
 
