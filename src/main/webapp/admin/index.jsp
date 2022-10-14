@@ -8,7 +8,10 @@
             theme: {
                 extend: {
                     colors: {
-                        clifford: '#da373d',
+                        mainTextActive: '#b66dff',
+                        mainBg : '#f2edf3',
+                        bgWhite : '#ffffff',
+                        mainText : "#9C9FA6"
                     }
                 }
             }
