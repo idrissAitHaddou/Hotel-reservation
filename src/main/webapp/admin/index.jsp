@@ -25,14 +25,22 @@
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
 </head>
 <body>
-<div class="h-screen w-full bg-white relative flex overflow-hidden">
-    <div class="w-full h-full flex flex-col justify-between">
-        <jsp:include page="component/header.jsp"/>
-        <jsp:include page="component/sidebar.jsp"/>
-        <!-- Main -->
-        <main class="max-w-full h-full flex relative overflow-y-hidden">
-          main
-        </main>
+<div class="h-screen w-full bg-white relative flex">
+    <div class="w-full flex flex-col">
+       <%-- <jsp:include page="component/header.jsp"/> --%>
+        <div class="w-full h-16">
+            <jsp:include page="component/header.jsp"/>
+        </div>
+        <div class="w-full flex justify-between">
+            <jsp:include page="component/sidebar.jsp"/>
+            <%--<jsp:include page="component/sidebar.jsp"/>--%>
+            <!-- Main -->
+            <main class="w-full h-full relative bg-red-500">
+              <h1 class="h-96">hello world</h1>
+                <h1 class="h-96">hello world</h1>
+                <h1 class="h-96">hello world</h1>
+            </main>
+        </div>
     </div>
 
 </div>
