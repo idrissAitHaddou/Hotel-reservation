@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
         <!-- Header -->
-        <header class="h-full w-full flex items-center justify-end space-x-10 bg-green-800">
-            <nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
+        <header class="h-full w-full flex items-center space-x-10">
+            <nav class="bg-white w-full flex relative justify-between items-center mx-auto px-4 h-20">
                 <!-- logo -->
-                <div class="inline-flex">
+                <div class="flex justify-start md:justify-between item-center w-56">
                     <a class="_o6689fn" href="/"
                     ><div class="hidden md:block">
                         <svg width="102" height="32" fill="currentcolor" style="display: block">
@@ -17,101 +17,79 @@
                             </svg>
                         </div>
                     </a>
+                    <div>
+                        <svg onclick="toogleAsideBar()" class="mt-1 ml-10 md:ml-0 cursor-pointer" width="25px" height="25px" fill="#494c4e" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path fill="none" d="M0 0h24v24H0z"/>
+                                <path d="M18 18v2H6v-2h12zm3-7v2H3v-2h18zm-3-7v2H6V4h12z"/>
+                            </g>
+                        </svg>
+                    </div>
                 </div>
-
                 <!-- end logo -->
 
                 <!-- search bar -->
-                <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
-                    <div class="inline-block">
-                        <div class="inline-flex items-center max-w-full">
-                            <button class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-60 border rounded-full px-1  py-1" type="button">
-                                <div class="block flex-grow flex-shrink overflow-hidden">Start your search</div>
-                                <div class="flex items-center justify-center relative  h-8 w-8 rounded-full">
-                                    <svg
-                                            viewBox="0 0 32 32"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            aria-hidden="true"
-                                            role="presentation"
-                                            focusable="false"
-                                            style="
-                                display: block;
-                                fill: none;
-                                height: 12px;
-                                width: 12px;
-                                stroke: currentcolor;
-                                stroke-width: 5.33333;
-                                overflow: visible;
-                            "
-                                    >
-                                        <g fill="none">
-                                            <path
-                                                    d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
-                                            ></path>
-                                        </g>
-                                    </svg>
-                                </div>
-                            </button>
+                <div class="h-full hidden flex flex-col justify-center item-center md:flex">
+                    <form class="mt-3 w-96">
+                        <div class="relative">
+                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="default-search" class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-white" placeholder="Search Mockups, Logos..." required>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <!-- end search bar -->
 
-                <!-- login -->
-                <div class="flex-initial">
-                    <div class="flex justify-end items-center relative">
-
-                        <div class="flex mr-4 items-center">
-                            <a class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full" href="#">
-                                <div class="flex items-center relative cursor-pointer whitespace-nowrap">Become a host</div>
-                            </a>
-                            <div class="block relative">
-                                <button type="button" class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full relative ">
-                                    <div class="flex items-center h-5">
-                                        <div class="_xpkakx">
-                                            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 16px; width: 16px; fill: currentcolor;"><path d="m8.002.25a7.77 7.77 0 0 1 7.748 7.776 7.75 7.75 0 0 1 -7.521 7.72l-.246.004a7.75 7.75 0 0 1 -7.73-7.513l-.003-.245a7.75 7.75 0 0 1 7.752-7.742zm1.949 8.5h-3.903c.155 2.897 1.176 5.343 1.886 5.493l.068.007c.68-.002 1.72-2.365 1.932-5.23zm4.255 0h-2.752c-.091 1.96-.53 3.783-1.188 5.076a6.257 6.257 0 0 0 3.905-4.829zm-9.661 0h-2.75a6.257 6.257 0 0 0 3.934 5.075c-.615-1.208-1.036-2.875-1.162-4.686l-.022-.39zm1.188-6.576-.115.046a6.257 6.257 0 0 0 -3.823 5.03h2.75c.085-1.83.471-3.54 1.059-4.81zm2.262-.424c-.702.002-1.784 2.512-1.947 5.5h3.904c-.156-2.903-1.178-5.343-1.892-5.494l-.065-.007zm2.28.432.023.05c.643 1.288 1.069 3.084 1.157 5.018h2.748a6.275 6.275 0 0 0 -3.929-5.068z"></path></svg>
+                <div class="flex h-20 w-96 justify-between">
+                    <%-- start profile --%>
+                    <div class="flex items-center mr-2">
+                        <button type="button" data-dropdown-toggle="language-dropdown-menu" class="inline-flex justify-center items-center p-2 text-sm rounded cursor-pointer">
+                            <div class="relative">
+                                <img class="w-8 h-8 rounded-full mr-6" src="/assets/images/profileImg.svg" alt="">
+                                <span class="top-0 left-7 absolute  w-2.5 h-2.5 bg-green-400 border-1 border-white dark:border-gray-800 rounded-full"></span>
+                            </div>
+                            idriss@gmail.com
+                        </button>
+                        <!-- Dropdown -->
+                        <div class="w-48 hidden z-50 my-4 text-base list-none bg-white rounded divide-y shadow" id="language-dropdown-menu">
+                            <ul class="py-1" role="none">
+                                <li>
+                                    <a href="#" class="block py-2 px-1 text-sm" role="menuitem">
+                                        <div class="ml-3 w-full flex justify-start items-center">
+                                            <svg width="18px" height="18px" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill="#494c4e" d="M9 0a9 9 0 0 0-9 9 8.654 8.654 0 0 0 .05.92 9 9 0 0 0 17.9 0A8.654 8.654 0 0 0 18 9a9 9 0 0 0-9-9zm5.42 13.42c-.01 0-.06.08-.07.08a6.975 6.975 0 0 1-10.7 0c-.01 0-.06-.08-.07-.08a.512.512 0 0 1-.09-.27.522.522 0 0 1 .34-.48c.74-.25 1.45-.49 1.65-.54a.16.16 0 0 1 .03-.13.49.49 0 0 1 .43-.36l1.27-.1a2.077 2.077 0 0 0-.19-.79v-.01a2.814 2.814 0 0 0-.45-.78 3.83 3.83 0 0 1-.79-2.38A3.38 3.38 0 0 1 8.88 4h.24a3.38 3.38 0 0 1 3.1 3.58 3.83 3.83 0 0 1-.79 2.38 2.814 2.814 0 0 0-.45.78v.01a2.077 2.077 0 0 0-.19.79l1.27.1a.49.49 0 0 1 .43.36.16.16 0 0 1 .03.13c.2.05.91.29 1.65.54a.49.49 0 0 1 .25.75z"/>
+                                            </svg>
+                                            <span class="ml-2 text-sm">idriss profile</span>
                                         </div>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="block">
-                            <div class="inline relative">
-                                <button type="button" class="inline-flex items-center relative px-2 border rounded-full hover:shadow-lg">
-                                    <div class="pl-1">
-                                        <svg
-                                                viewBox="0 0 32 32"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                aria-hidden="true"
-                                                role="presentation"
-                                                focusable="false"
-                                                style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;"
-                                        >
-                                            <g fill="none" fill-rule="nonzero">
-                                                <path d="m2 16h28"></path>
-                                                <path d="m2 24h28"></path>
-                                                <path d="m2 8h28"></path>
-                                            </g>
-                                        </svg>
-                                    </div>
-
-                                    <div class="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
-                                        <svg
-                                                viewBox="0 0 32 32"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                aria-hidden="true"
-                                                role="presentation"
-                                                focusable="false"
-                                                style="display: block; height: 100%; width: 100%; fill: currentcolor;"
-                                        >
-                                            <path d="m16 .7c-8.437 0-15.3 6.863-15.3 15.3s6.863 15.3 15.3 15.3 15.3-6.863 15.3-15.3-6.863-15.3-15.3-15.3zm0 28c-4.021 0-7.605-1.884-9.933-4.81a12.425 12.425 0 0 1 6.451-4.4 6.507 6.507 0 0 1 -3.018-5.49c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5a6.513 6.513 0 0 1 -3.019 5.491 12.42 12.42 0 0 1 6.452 4.4c-2.328 2.925-5.912 4.809-9.933 4.809z"></path>
-                                        </svg>
-                                    </div>
-                                </button>
-                            </div>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
+                    <%-- end profile --%>
+                    <button type="button" class="inline-flex items-center relative px-2">
+                        <svg fill="#9C9FA6" width="20px" height="20px" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;}</style></defs><title>email--new</title><path d="M19,24H4L3.9966,8.9062l11.4341,7.9161a1.0008,1.0008,0,0,0,1.1386,0L28,8.9087,28,18h2V8a2.0027,2.0027,0,0,0-2-2H4A2.0023,2.0023,0,0,0,2,8V24a2.0027,2.0027,0,0,0,2,2H19ZM25.7986,8,16,14.7837,6.2014,8Z"/><circle cx="26" cy="24" r="4" fill="#FED713"/><rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/></svg>
+                    </button>
+                    <button type="button" class="inline-flex items-center relative px-2">
+                        <svg fill="#9C9FA6" width="20px" height="20px" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: none;
+                                    }
+                                </style>
+                            </defs>
+                            <path d="M26,16.5859V14H24v3a1,1,0,0,0,.293.707L27,20.4141V22H5V20.4141L7.707,17.707A1,1,0,0,0,8,17V13A7.9854,7.9854,0,0,1,20,6.0825V3.8467a9.896,9.896,0,0,0-3-.7959V1H15V3.0508A10.0136,10.0136,0,0,0,6,13v3.5859L3.293,19.293A1,1,0,0,0,3,20v3a1,1,0,0,0,1,1h7v1a5,5,0,0,0,10,0V24h7a1,1,0,0,0,1-1V20a1,1,0,0,0-.293-.707ZM19,25a3,3,0,0,1-6,0V24h6Z"/>
+                            <circle cx="26" cy="8" r="4" fill="#FE7C96"/>
+                            <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="inline-flex items-center relative px-2">
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="none" stroke="#9C9FA6" stroke-width="2" d="M16,4 C19.3637732,5.43018182 22,8.98935065 22,13 C22,18.6008831 17.5273457,23 12,23 C6.47265429,23 2,18.6008831 2,13 C2,8.98935065 4.63622679,5.43018182 8,4 M12,1 L12,11"/>
+                        </svg>
+                    </button>
                 </div>
                 <!-- end login -->
             </nav>
