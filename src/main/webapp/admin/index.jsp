@@ -28,15 +28,15 @@
 <div class="h-screen w-full bg-white relative flex">
     <div class="w-full flex flex-col">
        <%-- <jsp:include page="component/header.jsp"/> --%>
-        <div class="w-full h-16">
+        <div class="w-full h-20">
             <jsp:include page="component/header.jsp"/>
         </div>
         <div class="w-full flex justify-between">
             <jsp:include page="component/sidebar.jsp"/>
             <%--<jsp:include page="component/sidebar.jsp"/>--%>
             <!-- Main -->
-            <main class="w-full h-full relative bg-red-500">
-              <h1 class="h-96">hello world</h1>
+            <main class="w-full h-full relative bg-[#F2EDF3]">
+                <h1 class="h-96">hello world</h1>
                 <h1 class="h-96">hello world</h1>
                 <h1 class="h-96">hello world</h1>
             </main>
