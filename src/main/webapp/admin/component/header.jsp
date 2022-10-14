@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
         <!-- Header -->
-        <header class="h-16 w-full flex items-center relative justify-end space-x-10 bg-gray-800">
+        <header class="h-full w-full flex items-center justify-end space-x-10 bg-green-800">
             <nav class=" bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20">
                 <!-- logo -->
                 <div class="inline-flex">
@@ -116,4 +116,3 @@
                 <!-- end login -->
             </nav>
         </header>
-
