@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
         <!-- Header -->
-        <header class="h-full w-full flex items-center space-x-10 bg-red-800">
+        <header class="h-full w-full flex items-center space-x-10">
             <nav class="bg-white w-full flex relative justify-between items-center mx-auto px-4 h-20">
                 <!-- logo -->
-                <div class="flex">
+                <div class="flex justify-start md:justify-between item-center w-56">
                     <a class="_o6689fn" href="/"
                     ><div class="hidden md:block">
                         <svg width="102" height="32" fill="currentcolor" style="display: block">
@@ -17,15 +17,19 @@
                             </svg>
                         </div>
                     </a>
+                    <div>
+                        <svg onclick="toogleAsideBar()" class="mt-1 ml-10 md:ml-0 cursor-pointer" width="25px" height="25px" fill="#494c4e" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <g>
+                                <path fill="none" d="M0 0h24v24H0z"/>
+                                <path d="M18 18v2H6v-2h12zm3-7v2H3v-2h18zm-3-7v2H6V4h12z"/>
+                            </g>
+                        </svg>
+                    </div>
                 </div>
-                <div>
-                    <svg class="cursor-pointer" width="20px" height="20px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                </div>
-
                 <!-- end logo -->
 
                 <!-- search bar -->
-                <div class="h-full flex flex-col justify-center item-center">
+                <div class="h-full hidden flex flex-col justify-center item-center md:flex">
                     <form class="mt-3 w-96">
                         <div class="relative">
                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">

@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Title</title>
+    <Link rel="stylesheet" href="css/index.css"></Link>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -30,23 +31,21 @@
 <body>
 <div class="h-screen w-full bg-white relative flex">
     <div class="w-full flex flex-col">
-       <%-- <jsp:include page="component/header.jsp"/> --%>
         <div class="w-full h-20">
             <jsp:include page="component/header.jsp"/>
         </div>
         <div class="w-full flex justify-between">
             <jsp:include page="component/sidebar.jsp"/>
-            <%--<jsp:include page="component/sidebar.jsp"/>--%>
             <!-- Main -->
-            <main class="w-full h-full relative bg-[#F2EDF3]">
-                <h1 class="h-96">hello world</h1>
-                <h1 class="h-96">hello world</h1>
-                <h1 class="h-96">hello world</h1>
+            <main class="w-full h-full relative bg-[#f2edf3]">
+                <h1 class="h-96"></h1>
+                <h1 class="h-96"></h1>
+                <h1 class="h-96"></h1>
             </main>
         </div>
     </div>
-
 </div>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>

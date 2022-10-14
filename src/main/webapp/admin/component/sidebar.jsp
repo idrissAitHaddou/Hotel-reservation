@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!-- Sidebar -->
-<aside class="h-full fixed w-60  flex flex-col space-y-10 items-center justify-start relative bg-bgWhite text-white">
+<aside class="aside-bar h-full w-60 flex-col space-y-10 items-center justify-start relative bg-bgWhite text-white">
 
         <!-- Static sidebar for desktop -->
         <div class="hidden lg:flex lg:flex-shrink-0">
