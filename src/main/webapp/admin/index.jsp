@@ -38,7 +38,7 @@
             <jsp:include page="component/sidebar.jsp"/>
             <!-- Main -->
             <main class="w-full h-full relative bg-[#f2edf3]">
-               <jsp:include page="views/home/index.jsp"/>
+               <jsp:include page="views/profile/index.jsp"/>
             </main>
         </div>
     </div>
