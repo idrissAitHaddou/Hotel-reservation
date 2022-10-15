@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <Link rel="stylesheet" href="css/index.css"></Link>
+    <title>Htel</title>
+    <Link rel="stylesheet" href="css/index.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -38,14 +38,14 @@
             <jsp:include page="component/sidebar.jsp"/>
             <!-- Main -->
             <main class="w-full h-full relative bg-[#f2edf3]">
-                <h1 class="h-96"></h1>
-                <h1 class="h-96"></h1>
-                <h1 class="h-96"></h1>
+               <jsp:include page="views/home/index.jsp"/>
             </main>
         </div>
     </div>
 </div>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <script src="js/index.js"></script>
+<script src="js/chartsRooms.js"></script>
 </body>
 </html>
