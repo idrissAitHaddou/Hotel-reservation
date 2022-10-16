@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
 
 <!-- Sidebar -->
 <aside class="aside-bar h-screen w-76 flex-col space-y-10 items-center justify-start relative bg-bgWhite text-white">
@@ -166,4 +165,8 @@
     </div>
 
 </aside>
+
+<!-- Main -->
+<main class="w-full h-full relative bg-[#f2edf3]">
+
 
