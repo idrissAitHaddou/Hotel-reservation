@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = {"/admin", "/admin/dashboard", "/admin/rooms", "/admin/profile"})
+@WebServlet(urlPatterns = {"/admin/dashboard", "/admin/rooms", "/admin/profile"})
 public class RouterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
