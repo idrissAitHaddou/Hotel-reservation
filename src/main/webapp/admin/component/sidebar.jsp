@@ -166,7 +166,3 @@
 
 </aside>
 
-<!-- Main -->
-<main class="w-full h-full relative bg-[#f2edf3]">
-
-
