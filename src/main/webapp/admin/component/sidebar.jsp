@@ -22,7 +22,7 @@
                                 </span>
                             </a>
 
-                            <a href="#"
+                            <a href=""
                                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-base font-medium rounded-md">
                                 <!-- Hero icon name: outline/calendar -->
                                 <span class="font-medium text-base text-gray-700">
