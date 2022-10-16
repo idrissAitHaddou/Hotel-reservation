@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
-            rel="stylesheet"
-    />
-</head>
-<body>
+
     <div class="wrapper w-full flex flex-col md:flex-row justify-between item-center p-6">
         <!-- left-start -->
         <div class="left-components">
@@ -118,10 +103,7 @@
         </div>
         <!-- right-end -->
     </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
-<script src="./app.js"></script>
-</body>
-</html>
+
 
 
 
