@@ -9,7 +9,7 @@
                     <nav class="mt-5 flex-1" aria-label="Sidebar">
                         <div class="px-2">
                             <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-                            <a href="#"class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-sm font-medium rounded-md">
+                            <a href="/admin/dashboard"class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-sm font-medium rounded-md">
                                 <span class="font-medium text-base text-gray-700">
                                     Dashboard
                                 </span>
@@ -37,7 +37,7 @@
                                         </svg>
                                     </span>
 
-                            </a><a href="#"
+                            </a><a href="/admin/rooms"
                                    class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-base font-medium rounded-md">
                             <!-- Hero icon name: outline/calendar -->
                             <span class="font-medium text-base text-gray-700">

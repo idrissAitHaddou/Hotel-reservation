@@ -6,13 +6,16 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = {"/admin/dashboard", "/admin/rooms", "/admin/profile"})
+@WebServlet(urlPatterns = {"/admin", "/admin/dashboard", "/admin/rooms", "/admin/profile"})
 public class RouterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath()!=null?request.getServletPath():"";
         switch(path) {
             case "/admin/dashboard":
+                view(request, response, "../admin/index.jsp");
+                break;
+            case "/admin":
                 view(request, response, "../admin/index.jsp");
                 break;
             case "/admin/rooms":
