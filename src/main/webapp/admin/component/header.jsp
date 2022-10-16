@@ -96,7 +96,7 @@
                             </div>
                             idriss@gmail.com
                         </button>
-                        <!-- Dropdown -->
+                        <!-- Dropdown profile -->
                         <div class="w-48 hidden z-50 my-4 text-base list-none bg-white rounded divide-y shadow" id="language-dropdown-menu">
                             <ul class="py-1" role="none">
                                 <li>
