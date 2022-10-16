@@ -1,0 +1,267 @@
+/* responsive of asidebar */
+.show-aside-bar{
+    display: block !important;
+}
+
+/* style statics  */
+.first-static{
+    background-image: url("https://img.freepik.com/premium-vector/background-gradient-green-tones-background_23-2148376179.jpg");
+}
+.second-static{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTagR9pofEyTUmVC35gEC4oGEmeR9pPZUZ9iA&usqp=CAU");
+}
+.three-static{
+    background-image: url("https://i.pinimg.com/736x/7c/67/c3/7c67c3df749e99a8e13b8a7fb6464ec5.jpg");
+}
+
+/* chart js css  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f3f6;
+}
+li {
+    list-style: none;
+}
+.wrapper {
+    display: flex;
+    gap: 42px;
+}
+/* left-weather */
+.weather {
+    height: 147px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 30px;
+}
+.weather .container p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #22215b;
+    opacity: 60%;
+}
+.time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.weather .container .am {
+    font-size: 30px;
+    font-weight: bold;
+    color: #22215b;
+}
+.weather-img img {
+    width: 34px;
+    height: 24px;
+}
+.am-pm {
+    margin: 5px 0;
+}
+.weather-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.degree {
+    font-size: 24px;
+    font-weight: bold;
+    color: #22215b;
+}
+/* left-profile */
+.profile {
+    height: 294px;
+    background-color: #fff;
+    padding: 31px 43px 23px 30px;
+    border-radius: 30px;
+    margin-top: 25px;
+}
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile-info {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 60px;
+}
+.info-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+}
+.info-color {
+    font-size: 15px;
+    color: #22215b;
+    font-weight: 400;
+}
+.info-bold {
+    font-size: 18px;
+    font-weight: bold;
+    color: #22215b;
+}
+.profile-image img {
+    width: 72px;
+    height: 72px;
+}
+
+.body-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #22215b;
+}
+.profile-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.body-job {
+    font-size: 15px;
+    font-weight: 400;
+    color: #22215b;
+}
+.profile-body {
+    margin-top: 20px;
+}
+.profile-footer {
+    margin-top: 21px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* width: 100%; */
+}
+.profile-footer__bold {
+    font-size: 15px;
+    font-weight: bold;
+    color: #22215b;
+}
+.profile-footer__p {
+    font-size: 14px;
+    color: #22215b;
+    opacity: 60%;
+    font-weight: 400;
+    line-height: 20px;
+}
+/* right */
+
+/* --input-- */
+.search {
+    width: 476px;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 28px;
+}
+.search-image img {
+    width: 25px;
+    height: 25px;
+}
+.container-search {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+.inp input {
+    border: 0;
+    outline: 0;
+    height: 30px;
+}
+::placeholder {
+    font-size: 20px;
+    color: #22215b;
+}
+/* --chart-- */
+.right-part {
+    position: relative;
+}
+.chart {
+    height: 294px;
+    background-color: #fff;
+    padding: 30px 38px 37px 30px;
+    border-radius: 20px;
+    margin-top: 15px;
+}
+.container-chart {
+    display: flex;
+    flex-basis: 50%;
+    justify-content: space-between;
+    align-items: center;
+}
+.circle-image {
+    width: 10px;
+    height: 10px;
+}
+.ex-bold {
+    font-size: 30px;
+    font-weight: bold;
+    color: #22215b;
+}
+.lists {
+    margin-top: 20px;
+}
+.list {
+    display: flex;
+    gap: 10px;
+    margin-top: 11px;
+}
+/* --pie-- */
+.pie-rotate {
+    transform: rotate(-40deg);
+}
+/* --notif-- */
+.container-notif {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.notif {
+    width: 476px;
+    height: 95px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 28px;
+    padding: 20px;
+}
+.notif-image-size {
+    width: 55px;
+    height: 55px;
+}
+.notif-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.notif-info :nth-child(1) {
+    font-size: 20px;
+    font-weight: bold;
+    color: #22215b;
+}
+.notif-info :nth-child(2) {
+    font-size: 18px;
+    color: #22215b;
+    opacity: 60%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
