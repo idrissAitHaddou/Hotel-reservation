@@ -22,7 +22,7 @@
                                 </span>
                             </a>
 
-                            <a href="#"
+                            <a href="/admin/booking"
                                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-base font-medium rounded-md">
                                 <!-- Hero icon name: outline/calendar -->
                                 <span class="font-medium text-base text-gray-700">
@@ -37,7 +37,8 @@
                                         </svg>
                                     </span>
 
-                            </a><a href="/admin/rooms"
+                            </a>
+                            <a href="/admin/rooms"
                                    class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-base font-medium rounded-md">
                             <!-- Hero icon name: outline/calendar -->
                             <span class="font-medium text-base text-gray-700">
@@ -54,7 +55,7 @@
                             </span>
 
                         </a>
-                            <a href="#"
+                            <a href="/admin/rooms-rates"
                                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-base font-medium rounded-md">
                                 <!-- Hero icon name: outline/calendar -->
                                 <span class="font-medium text-base text-gray-700">
@@ -73,7 +74,7 @@
                                         </svg>
                                 </span>
                             </a>
-                            <a href="#"
+                            <a href="/admin/promotion"
                                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-base font-medium rounded-md">
                                 <!-- Hero icon name: outline/calendar -->
                                 <span class="font-medium text-base text-gray-700">
@@ -114,7 +115,7 @@
                                             </g>
                                     </svg>
                             </a>
-                            <a href="#"
+                            <a href="/admin/extras"
                                class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-base font-medium rounded-md">
                                 <!-- Hero icon name: outline/calendar -->
                                 <span class="font-medium text-base text-gray-700">
@@ -129,18 +130,7 @@
                                         </svg>
                                     </span>
                             </a>
-                            <a href="#"
-                               class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center justify-between px-2 py-2 text-base font-medium rounded-md">
-                                <!-- Hero icon name: outline/calendar -->
-                                <span class="font-medium text-base text-gray-700">
-                                        Payment
-                                    </span>
-                                <span class="text-gray-500">
-                                    <svg class="text-gray-400 group-hover:text-gray-500 mr-3 h-5 w-5" width="24px"
-                                         height="24px"  viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" fill="currentColor"></path>
-                                    </svg>
-                                </span>
-                            </a>
+
                         </div>
                     </nav>
                 </div>
@@ -165,4 +155,6 @@
     </div>
 
 </aside>
+<!-- main -->
+<main class="w-full h-full relative bg-[#f2edf3]">
 

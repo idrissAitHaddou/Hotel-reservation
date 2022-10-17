@@ -8,7 +8,7 @@
         <span class="sr-only">Close modal</span>
       </button>
       <div class="py-6 px-6 lg:px-8">
-        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add room</h3>
+        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add extras</h3>
         <form class="space-y-6" action="#">
           <div class="mb-6 flex md:flex-row flex-col justify-between">
               <div class="w-full">
@@ -43,7 +43,7 @@
               Cancel
             </button>
             <button class="flex py-2 px-3 bg-blue-400 rounded-lg text-white">
-              Add Room
+              Add extras
             </button>
           </div>
         </form>

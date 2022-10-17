@@ -1,4 +1,3 @@
-
 <div class="p-6">
   <nav class="flex justify-between mb-8" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -16,6 +15,9 @@
       </li>
     </ol>
   </nav>
+  <div class="w-full mb-12">
+    <img class="mx-auto w-36 h-36 rounded-full" src="/assets/images/profileImg.svg" alt="">
+  </div>
   <form class="space-y-6" action="#">
     <div class="mb-6 flex md:flex-row flex-col justify-between">
       <div class="w-full">
