@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = {"/admin", "/admin/dashboard", "/admin/rooms", "/admin/profile"})
+@WebServlet(urlPatterns = {"/admin", "/admin/dashboard", "/admin/rooms", "/admin/profile", "/admin/booking", "/admin/rooms-rates", "/admin/promotion", "/admin/extras"})
 public class RouterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,6 +20,18 @@ public class RouterServlet extends HttpServlet {
                 break;
             case "/admin/profile":
                 view(request, response, "../admin/views/profile/index.jsp");
+                break;
+            case "/admin/booking":
+                view(request, response, "../admin/views/booking/index.jsp");
+                break;
+            case "/admin/rooms-rates":
+                view(request, response, "../admin/views/roomRates/index.jsp");
+                break;
+            case "/admin/promotion":
+                view(request, response, "../admin/views/promotion/index.jsp");
+                break;
+            case "/admin/extras":
+                view(request, response, "../admin/views/extras/index.jsp");
                 break;
         }
     }

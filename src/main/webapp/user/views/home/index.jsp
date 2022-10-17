@@ -34,6 +34,7 @@
 <jsp:include page="../../component/header.jsp" />
 <jsp:include page="partails/hero.jsp" />
 
+
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </body>
 </html>

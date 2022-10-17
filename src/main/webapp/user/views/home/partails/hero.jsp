@@ -24,3 +24,10 @@
     <img class="hidden md:block absolute rounded-lg -rotate-12 top-18 right-24 w-80 h-80" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/128422/hero-2.jpg">
 
 </div>
+
+<div class="flex justify-center gap-12">
+    <jsp:include page="roomCart.jsp"/>
+    <jsp:include page="roomCart.jsp"/>
+    <jsp:include page="roomCart.jsp"/>
+    <jsp:include page="roomCart.jsp"/>
+</div>
