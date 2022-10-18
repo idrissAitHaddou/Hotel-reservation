@@ -145,7 +145,7 @@
 <jsp:include page="partails/promotion.jsp" />
 <jsp:include page="partails/suite.jsp" />
 
-<div class="px-4 py-10 m-8 ">
+<div class="w-full py-10">
 
     <div class="font-bold text-3xl mx-10  my-2 flex justify-center">The Most booked hotel</div>
     <div class="font-bold text-3xl mx-10 pb-4 mb-8 flex justify-center">
@@ -153,7 +153,7 @@
             <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
     </div>
-    <div class="flex justify-center gap-4 mb-8">
+    <div class="flex justify-center w-11/12 mx-auto gap-4 bg-red-500 mb-8">
         <%--        <c:forech var="instanceVar" items="${roomsUrls}">--%>
         <jsp:include page="partails/roomCart.jsp">
             <jsp:param name="myVar" value="argana.jpg"/>
@@ -177,11 +177,11 @@
         <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>
 </div>
-<div class="flex justify-center mx-52 space-x-4">
-    <jsp:include page="partails/reviewCart.jsp"/>
-    <jsp:include page="partails/reviewCart.jsp"/>
-    <jsp:include page="partails/reviewCart.jsp"/>
 
+<div class="flex w-11/12 h-96 mx-auto bg-green-500">
+    <jsp:include page="partails/reviewCart.jsp"/>
+    <jsp:include page="partails/reviewCart.jsp"/>
+    <jsp:include page="partails/reviewCart.jsp"/>
 </div>
 <jsp:include page="../../component/footer.jsp" />
 
