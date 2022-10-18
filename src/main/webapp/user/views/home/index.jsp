@@ -145,13 +145,13 @@
     <jsp:include page="partails/promotion.jsp" />
     <jsp:include page="partails/suite.jsp" />
 
-    <div class="flex justify-center font-bold text-3xl my-2">The Most booked hotel</div>
+    <div class="flex justify-center font-bold md:text-3xl text-xl my-2 mt-20">The Most booked hotel</div>
     <div class="font-bold text-3xl mx-10 pb-4 mb-8 flex justify-center">
-        <svg width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="md:w-auto w-52" width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
     </div>
-    <div class="flex justify-center w-11/12 mx-auto gap-4 mb-8">
+    <div class="flex md:flex-row flex-col justify-center  w-11/12 mx-auto md:gap-x-4 gap-y-4 mb-8">
         <%--        <c:forech var="instanceVar" items="${roomsUrls}">--%>
         <jsp:include page="partails/roomCart.jsp">
             <jsp:param name="myVar" value="argana.jpg"/>
@@ -168,14 +168,14 @@
         <%--        </c:forech>--%>
 
     </div>
-    <div class="font-bold text-3xl mx-10  my-2 flex justify-center">Thoughts from our guests </div>
+    <div class="font-bold md:text-3xl text-xl mx-10  my-2 flex justify-center mt-20">Thoughts from our guests </div>
     <div class="font-bold text-3xl mx-10 pb-4 mb-8 flex justify-center">
-        <svg width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="md:w-auto w-52" width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
     </div>
 
-    <div class="flex w-11/12 h-96 mx-auto gap-8">
+    <div class="flex md:flex-row flex-col w-11/12 mx-auto gap-8">
         <jsp:include page="partails/reviewCart.jsp"/>
         <jsp:include page="partails/reviewCart.jsp"/>
         <jsp:include page="partails/reviewCart.jsp"/>
