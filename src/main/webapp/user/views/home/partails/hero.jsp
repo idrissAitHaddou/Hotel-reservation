@@ -33,31 +33,3 @@
     <img class="hidden md:block absolute rounded-lg -rotate-12 top-18 right-24 w-80 h-80" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/128422/hero-2.jpg">
 
 </div>
-<div class="px-4 py-10 m-8 ">
-
-    <div class="font-bold text-3xl mx-10  mb-2 flex justify-center">The Most booked hotel</div>
-    <div class="font-bold text-3xl mx-10 pb-4 mb-2 flex justify-center">
-        <svg width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-
-    </div>
-    <div class="flex justify-center gap-4 mb-8">
-<%--        <c:forech var="instanceVar" items="${roomsUrls}">--%>
-            <jsp:include page="roomCart.jsp">
-                <jsp:param name="myVar" value="argana.jpg"/>
-            </jsp:include>
-            <jsp:include page="roomCart.jsp">
-                <jsp:param name="myVar" value="casablanca-hotel.jpg"/>
-            </jsp:include>
-            <jsp:include page="roomCart.jsp">
-                <jsp:param name="myVar" value="marakech-hotel.jpg"/>
-            </jsp:include>
-            <jsp:include page="roomCart.jsp">
-                <jsp:param name="myVar" value="marzouga-hotel.jpg"/>
-            </jsp:include>
-<%--        </c:forech>--%>
-    </div>
-
-</div>
-<div>this</div>

@@ -34,6 +34,44 @@
 <jsp:include page="../../component/header.jsp" />
 <jsp:include page="partails/hero.jsp" />
 
+<div class="px-4 py-10 m-8 ">
+
+    <div class="font-bold text-3xl mx-10  my-2 flex justify-center">The Most booked hotel</div>
+    <div class="font-bold text-3xl mx-10 pb-4 mb-8 flex justify-center">
+        <svg width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </div>
+    <div class="flex justify-center gap-4 mb-8">
+        <%--        <c:forech var="instanceVar" items="${roomsUrls}">--%>
+        <jsp:include page="partails/roomCart.jsp">
+            <jsp:param name="myVar" value="argana.jpg"/>
+        </jsp:include>
+        <jsp:include page="partails/roomCart.jsp">
+            <jsp:param name="myVar" value="casablanca-hotel.jpg"/>
+        </jsp:include>
+        <jsp:include page="partails/roomCart.jsp">
+            <jsp:param name="myVar" value="marakech-hotel.jpg"/>
+        </jsp:include>
+        <jsp:include page="partails/roomCart.jsp">
+            <jsp:param name="myVar" value="marzouga-hotel.jpg"/>
+        </jsp:include>
+        <%--        </c:forech>--%>
+    </div>
+
+</div>
+<div class="font-bold text-3xl mx-10  my-2 flex justify-center">Thoughts from our guests </div>
+<div class="font-bold text-3xl mx-10 pb-4 mb-8 flex justify-center">
+    <svg width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+</div>
+<div class="flex justify-center mx-52 space-x-4">
+    <jsp:include page="partails/reviewCart.jsp"/>
+    <jsp:include page="partails/reviewCart.jsp"/>
+    <jsp:include page="partails/reviewCart.jsp"/>
+
+</div>
 
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </body>
