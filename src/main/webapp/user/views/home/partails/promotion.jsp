@@ -1,5 +1,5 @@
 
-<div class="flex flex-col md:flex-row justify-around p-6 w-11/12 mx-auto h-auto mt-28">
+<div class="flex flex-col md:flex-row justify-around py-6 w-11/12 mx-auto h-auto mt-28">
     <div class="flex flex-col justify-center item-center">
         <h1 class="font-bold text-5xl mb-3" style="font-family: 'Fuzzy Bubbles', cursive;">Promotion</h1>
         <p class="my-6" style="font-family: 'Fuzzy Bubbles', cursive;">Ahd shdf ssd fksjd bkjsbk  ksdjflksdlfslmdsf shd shdf ssd fksjd</p>
