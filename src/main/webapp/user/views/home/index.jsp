@@ -141,11 +141,11 @@
 
 <jsp:include page="../../component/header.jsp" />
 <jsp:include page="partails/hero.jsp" />
-<jsp:include page="partails/promotion.jsp" />
-<jsp:include page="partails/suite.jsp" />
+<div class="px-6 md:px-16">
+    <jsp:include page="partails/promotion.jsp" />
+    <jsp:include page="partails/suite.jsp" />
 
-
-    <div class="font-bold text-3xl mx-10  my-2 flex justify-center">The Most booked hotel</div>
+    <div class="flex justify-center font-bold text-3xl my-2">The Most booked hotel</div>
     <div class="font-bold text-3xl mx-10 pb-4 mb-8 flex justify-center">
         <svg width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -167,21 +167,21 @@
         </jsp:include>
         <%--        </c:forech>--%>
 
-</div>
-<div class="font-bold text-3xl mx-10  my-2 flex justify-center">Thoughts from our guests </div>
-<div class="font-bold text-3xl mx-10 pb-4 mb-8 flex justify-center">
-    <svg width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
-    </svg>
-</div>
+    </div>
+    <div class="font-bold text-3xl mx-10  my-2 flex justify-center">Thoughts from our guests </div>
+    <div class="font-bold text-3xl mx-10 pb-4 mb-8 flex justify-center">
+        <svg width="322" height="19" viewBox="0 0 322 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.999997 17V17C106.745 -2.82723 215.255 -2.82722 321 17V17" stroke="#FF8C32" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </div>
 
-<div class="flex w-11/12 h-96 mx-auto gap-8">
-    <jsp:include page="partails/reviewCart.jsp"/>
-    <jsp:include page="partails/reviewCart.jsp"/>
-    <jsp:include page="partails/reviewCart.jsp"/>
+    <div class="flex w-11/12 h-96 mx-auto gap-8">
+        <jsp:include page="partails/reviewCart.jsp"/>
+        <jsp:include page="partails/reviewCart.jsp"/>
+        <jsp:include page="partails/reviewCart.jsp"/>
+    </div>
 </div>
 <jsp:include page="../../component/footer.jsp" />
-
 
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </body>
