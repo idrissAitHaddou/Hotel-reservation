@@ -1,4 +1,4 @@
-<div class="flex justify-around h-48 w-1/3">
+<div class="flex justify-around h-48 md:w-1/3 w-full">
     <div class="flex flex-col text-md text-gray-500 space-x-4 border hover:border-2 border-gray-200 hover:border-[#FF8C32] rounded-lg p-4">
       <div class="flex items-center space-x-4">
         <div class="flex-none py-2">
