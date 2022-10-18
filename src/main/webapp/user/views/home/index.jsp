@@ -142,9 +142,6 @@
 
 <jsp:include page="../../component/header.jsp" />
 <jsp:include page="partails/hero.jsp" />
-<jsp:include page="partails/promotion.jsp" />
-<jsp:include page="partails/suite.jsp" />
-<jsp:include page="../../component/footer.jsp" />
 
 <div class="px-4 py-10 m-8 ">
 
@@ -184,6 +181,10 @@
     <jsp:include page="partails/reviewCart.jsp"/>
 
 </div>
+<jsp:include page="partails/promotion.jsp" />
+<jsp:include page="partails/suite.jsp" />
+<jsp:include page="../../component/footer.jsp" />
+
 
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </body>
