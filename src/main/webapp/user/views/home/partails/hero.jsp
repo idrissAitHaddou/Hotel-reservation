@@ -39,7 +39,3 @@
         </div>
     </form>
 </div>
-
-<div class="flex justify-center gap-12">
-
-</div>
