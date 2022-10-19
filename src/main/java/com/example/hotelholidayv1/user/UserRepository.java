@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRepository extends Connection {
-    // get all users
+    // * get all users
     ResultSet GET() {
         ResultSet user = null;
         String query = "select * from admins";
