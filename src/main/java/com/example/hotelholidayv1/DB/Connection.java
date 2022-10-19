@@ -11,15 +11,15 @@ public class Connection {
 
     public static void connect(){
         try{
-            //Class.forName("org.postgresql.Driver");
+            Class.forName("org.postgresql.Driver");
             java.sql.Connection connection = DriverManager.getConnection(url, user, password);
             statement = connection.createStatement();
             System.out.println("connection successfully");
-        }catch (SQLException ex){
-            System.out.println(ex.getMessage());
-            System.out.println("connection failed");
+        } catch (SQLException  e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
-
 
 }
