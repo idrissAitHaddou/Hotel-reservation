@@ -32,6 +32,7 @@ public class RouterAdminServlet extends HttpServlet {
             case "/admin/extras":
                 view(request, response, "../admin/views/extras/index.jsp");
                 break;
+
         }
     }
 
