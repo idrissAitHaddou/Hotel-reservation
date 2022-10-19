@@ -7,10 +7,11 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet("TestConnection")
+@WebServlet("/TestConnectionServlet")
 public class TestConnectionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Connection.connect();
+       Connection.connect();
     }
+
 }
