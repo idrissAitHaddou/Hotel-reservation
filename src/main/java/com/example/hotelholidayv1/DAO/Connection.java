@@ -1,9 +1,9 @@
-package com.example.hotelholidayv1.DB;
+package com.example.hotelholidayv1.DAO;
 
 import java.sql.*;
 
 public class Connection {
-    private static Statement statement;
+    public static Statement statement;
 
     private static final String url = "jdbc:postgresql://localhost:5433/hotel-holiday";
     private static final String user = "postgres";
@@ -15,11 +15,13 @@ public class Connection {
             java.sql.Connection connection = DriverManager.getConnection(url, user, password);
             statement = connection.createStatement();
             System.out.println("connection successfully");
-        } catch (SQLException  e) {
-            e.printStackTrace();
+        }catch (SQLException ex){
+            System.out.println(ex.getMessage());
+            System.out.println("connection failed");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
+
 
 }
