@@ -3,7 +3,7 @@
 
     <div class="w-full" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: -1;background-image:url('https://as1.ftcdn.net/v2/jpg/00/29/13/38/1000_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg');background-repeat:no-repeat;background-size: cover;filter: contrast(60%);">
     </div>
-    <form class="absolute border-2 border-orange bottom-16 bg-white p-4 rounded w-full md:w-1/2 shadow-lg">
+    <form class="md:absolute border-2 border-orange mt-16 md:mt-0 md:bottom-16 bg-white p-4 rounded w-full md:w-1/2 shadow-lg">
         <div class="flex flex-wrap items-end -mx-3">
             <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2" for="grid-city">Start date</label>
