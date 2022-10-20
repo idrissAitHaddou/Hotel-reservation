@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRepository extends Connection {
-    // * get all users
+    // get all users
     ResultSet GET() {
         ResultSet user = null;
-        String query = "select * from admins";
+        String query = "select * from admins ;";
         try {
             user = statement.executeQuery(query);
         } catch (SQLException ex) {
@@ -29,7 +29,7 @@ public class UserRepository extends Connection {
         query.append(user.email);
         query.append(" and id = ");
         query.append(user.id_admin);
-        query.append(" ");
+        query.append(" ;");
         try {
             userUpdated = statement.executeQuery(query.toString());
         } catch (SQLException ex) {
