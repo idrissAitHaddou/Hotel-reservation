@@ -9,18 +9,19 @@ public class Connection {
     private static final String user = "postgres";
     private static final String password = "admin";
 
-    public static void connect(){
+    public static Statement connect(){
         try{
             Class.forName("org.postgresql.Driver");
             java.sql.Connection connection = DriverManager.getConnection(url, user, password);
-            statement = connection.createStatement();
             System.out.println("connection successfully");
+            return connection.createStatement();
         }catch (SQLException ex){
             System.out.println(ex.getMessage());
             System.out.println("connection failed");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
 
 
