@@ -10,6 +10,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/admin/get","/admin/store","/admin/update","/admin/delete"})
 public class UserAdminServlet extends HttpServlet {
+
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Mapping(request, response);
     }
@@ -31,9 +32,11 @@ public class UserAdminServlet extends HttpServlet {
 
     public void getAllUserController() {
     }
+
     public void storeUserController(HttpServletRequest request) {
         UserService.storeUserService(convertToUserObject(request));
     }
+
     public void updateUserController() {
         UserService.updateUserService();
     }
