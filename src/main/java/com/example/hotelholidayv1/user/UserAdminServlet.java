@@ -8,13 +8,23 @@ import java.io.IOException;
 
 @WebServlet(name = "UserAdminServlet", value = "/UserAdminServlet")
 public class UserAdminServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Mapping(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    public void getAllUserController() {
+    }
+
+    public void storeUserController(HttpServletRequest request) {
+        UserService.storeUserService(convertToUserObject(request));
+    }
+
+    public void updateUserController() {
+        UserService.updateUserService();
+    }
+    public void destroyUserController() {
+        UserService.deleteUserService();
     }
 }
