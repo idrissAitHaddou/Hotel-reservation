@@ -1,20 +1,38 @@
 package com.example.hotelholidayv1.user;
 
+import com.example.hotelholidayv1.extras.ExtrasService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(name = "UserAdminServlet", value = "/UserAdminServlet")
-public class UserAdminServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+@WebServlet(urlPatterns = {"/admin/get","/admin/store","/admin/update","/admin/delete"})
+public class UserAdminServlet extends HttpServlet {
+    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Mapping(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void Mapping(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        String path = request.getServletPath()!=null?request.getServletPath():"";
+        switch(path) {
+            case "/admin/get": getAllUserController(); break;
+            case "/admin/store": storeUserController(request); break;
+            case "/admin/update": updateUserController(); break;
+            case "/admin/delete": destroyUserController(); break;
+        }
+    }
 
+    public void getAllUserController() {
+    }
+    public void storeUserController(HttpServletRequest request) {
+        UserService.storeUserService();
+    }
+    public void updateUserController() {
+        UserService.updateUserService();
+    }
+    public void destroyUserController() {
+        UserService.deleteUserService();
     }
 }
