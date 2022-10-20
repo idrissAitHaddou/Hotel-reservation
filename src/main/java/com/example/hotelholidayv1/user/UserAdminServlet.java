@@ -24,10 +24,15 @@ public class UserAdminServlet extends HttpServlet {
         }
     }
 
+    public User convertToUserObject(HttpServletRequest request) {
+        return new User(request.getParameter("firstname"), request.getParameter("lastname"),
+                       request.getParameter("email"), request.getParameter("password"));
+    }
+
     public void getAllUserController() {
     }
     public void storeUserController(HttpServletRequest request) {
-        UserService.storeUserService();
+        UserService.storeUserService(convertToUserObject(request));
     }
     public void updateUserController() {
         UserService.updateUserService();

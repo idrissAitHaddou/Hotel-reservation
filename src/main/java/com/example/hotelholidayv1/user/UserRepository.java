@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class UserRepository extends DAOManager {
     // * get all users
-    static ResultSet all(int id) throws SQLException {
+    ResultSet all(int id) throws SQLException {
         StringBuilder query = new StringBuilder("SELECT * FROM admins ");
         if(id != 0){
             query.append(" WHERE id_admin = ").append(id);
