@@ -11,7 +11,8 @@ public class UserService {
 
     public static void getAllUserService() {
     }
-    public static void storeUserService() {
+    public static void storeUserService(User user) {
+        UserRepository.save(user);
     }
     public static void updateUserService(){
 
