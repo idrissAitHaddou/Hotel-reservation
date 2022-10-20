@@ -7,8 +7,15 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet({"/admin/store", "/admin/update", "/admin/get", "/admin/delete"})
+@MultipartConfig
 public class UserAdminServlet extends HttpServlet {
-    public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Mapping(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Mapping(request, response);
     }
     public void Mapping(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
