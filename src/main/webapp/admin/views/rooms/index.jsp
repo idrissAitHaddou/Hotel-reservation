@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>rooms</title>
 </head>
 <body>
 <jsp:include page="partails/add.jsp"/>
@@ -51,7 +51,7 @@
         <tbody>
         <tr class="bg-white border-b hover:bg-gray-50">
           <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-            Apple MacBook Pro 17"
+            ${rooms}
           </th>
           <td class="py-4 px-6">
             Sliver

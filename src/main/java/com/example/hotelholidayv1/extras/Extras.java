@@ -8,4 +8,9 @@ public class Extras {
     public double rate;
     public Types type_extra;
 
+    public Extras(double rate, Types type_extra){
+        this.rate = rate;
+        this.type_extra = type_extra;
+    }
+
 }
