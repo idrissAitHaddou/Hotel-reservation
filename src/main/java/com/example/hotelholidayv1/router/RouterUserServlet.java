@@ -6,7 +6,7 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/booking"})
+@WebServlet(urlPatterns = {"/booking","/explore","/rooms-suites"})
 public class RouterUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -14,6 +14,12 @@ public class RouterUserServlet extends HttpServlet {
         switch(path) {
             case "/booking":
                 view(request, response, "/user/views/booking/index.jsp");
+                break;
+            case "/explore":
+                view(request, response, "/user/views/explore/index.jsp");
+                break;
+            case "/rooms-suites":
+                view(request, response, "/user/views/rooms/index.jsp");
                 break;
         }
     }

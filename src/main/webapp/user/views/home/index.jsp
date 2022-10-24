@@ -139,7 +139,12 @@
 </head>
 <body>
 
-<jsp:include page="../../component/header.jsp" />
+<%--<jsp:include page="../../component/header.jsp" />--%>
+
+<jsp:include page="../../component/nav.jsp" >
+    <jsp:param name="current" value="home"/>
+</jsp:include>
+
 <jsp:include page="partails/hero.jsp" />
 <div class="px-6 md:px-16">
     <jsp:include page="partails/promotion.jsp" />
