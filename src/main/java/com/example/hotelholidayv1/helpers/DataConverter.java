@@ -9,11 +9,12 @@ public class DataConverter {
 
     /**
      * Helper method that converts a ResultSet into a list of maps, one per row
+     *
      * @param rs ResultSet
      * @return list of maps, one per row, with column name as the key
      * @throws SQLException if the connection fails
      */
-    public static List<?> toList(ResultSet rs) throws SQLException
+    public static List<HashMap<String, Object>> toList(ResultSet rs) throws SQLException
     {
         List<String> wantedColumnNames  = getColumnNames(rs);
         return toList(rs, wantedColumnNames);
@@ -25,18 +26,15 @@ public class DataConverter {
      * @return list of maps, one per column row, with column names as keys
      * @throws SQLException if the connection fails
      */
-    public static List<?> toList(ResultSet rs, List<String> wantedColumnNames) throws SQLException
+    public static List<HashMap<String,Object>> toList(ResultSet rs, List<String> wantedColumnNames) throws SQLException
     {
-        List<Map<String,Object>> rows = new ArrayList<>();
+        List<HashMap<String,Object>> rows = new ArrayList<>();
 
-        int numWantedColumns = wantedColumnNames.size();
         while (rs.next())
         {
-            Map<String, Object> row = new TreeMap<>();
+            HashMap<String, Object> row = new HashMap<>();
 
-            for (int i = 0; i < numWantedColumns; ++i)
-            {
-                String columnName   = wantedColumnNames.get(i);
+            for (String columnName : wantedColumnNames) {
                 Object value = rs.getObject(columnName);
                 row.put(columnName, value);
             }
@@ -46,8 +44,6 @@ public class DataConverter {
 
         return rows;
     }
-
-
 
 
     /**
@@ -71,4 +67,20 @@ public class DataConverter {
         return columnNames;
     }
 
+    /**
+     * Return parsed integer of strings
+     * @param str to parse
+     * @return parse it integer and if not integer return -1
+     * @throws ArithmeticException if the query fails
+     */
+
+    public static int parseInt(String str){
+        int result = -1;
+        try{
+            result = Integer.parseInt(str);
+        }catch (ArithmeticException arithmeticException){
+            arithmeticException.printStackTrace();
+        }
+        return result;
+    }
 }

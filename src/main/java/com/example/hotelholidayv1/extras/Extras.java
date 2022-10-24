@@ -1,15 +1,14 @@
 package com.example.hotelholidayv1.extras;
 
 public class Extras {
-    public enum Types {
-        breakfast, lunch, dinner, fruits, musique, spa, message, soin, excurion
-    }
+
     public int id_extra;
     public double rate;
-    public Types type_extra;
+    public String type_extra;
 
-    public Extras(double rate, Types type_extra){
-        this.rate = rate;
+    public Extras(String id_extra,String rate, String type_extra){
+        this.id_extra = id_extra != null ? Integer.parseInt(id_extra) : 0;
+        this.rate = rate != null ? Double.parseDouble(rate) : 0  ;
         this.type_extra = type_extra;
     }
 

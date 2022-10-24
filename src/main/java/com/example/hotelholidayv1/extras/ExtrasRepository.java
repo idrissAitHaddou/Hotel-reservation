@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 public class ExtrasRepository extends DAOManager {
     static ResultSet all(int id){
         StringBuilder query = new StringBuilder("SELECT * FROM extras ");
-        if(id != 0){
+        if(id != -1){
             query.append(" WHERE id_extra = ").append(id);
         }
         query.append(";");
@@ -20,11 +20,11 @@ public class ExtrasRepository extends DAOManager {
         query.append(");");
         return post(query);
     }
-    static boolean update(Extras extra,int id){
+    static boolean update(Extras extra){
         StringBuilder query = new StringBuilder("UPDATE extras SET");
-        query.append(" rate = ").append("'").append(extra.rate).append("'");
-        query.append(" type_extra = ").append("'").append(extra.type_extra).append("'");
-        query.append(" WHERE id_extra = ").append(id);
+        query.append(" rate = ").append(extra.rate);
+        query.append(", type_extra = ").append("'").append(extra.type_extra).append("'");
+        query.append(" WHERE id_extra = ").append(extra.id_extra);
         return post(query);
     }
 
