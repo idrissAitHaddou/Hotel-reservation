@@ -9,41 +9,44 @@
       </button>
       <div class="py-6 px-6 lg:px-8">
         <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add room rates</h3>
-        <form class="space-y-6" action="#">
-          <div class="mb-6 flex md:flex-row flex-col justify-between">
-              <div class="w-full">
-                <label for="username-success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Number</label>
-                <input type="number" id="username-success" class="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400" placeholder="Bonnie Green">
-                <p class="mt-2 text-sm text-green-600 dark:text-green-500"><span class="font-medium">Great!</span> Number is available</p>
+        <form class="space-y-6" action="room-rates/store" method="post">
+          <div class="mb-6 flex md:flex-row flex-col justify-between gap-6">
+            <div class="w-full">
+              <label for="number_room" class="block mb-2 text-sm font-medium text-grey-800 ">Select the room</label>
+              <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <select id="number_room" name="room_id" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+                  <option value=" " disabled selected>--SELECT ROOM--</option>
+
+                </select>
               </div>
-              <div class="w-full ml-2">
-                <label for="username-success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Floor number</label>
-                <input type="text" id="usernam-success" class="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400" placeholder="Bonnie Green">
-                <p class="mt-2 text-sm text-green-600 dark:text-green-500"><span class="font-medium">Great!</span> Floor number is valid</p>
+            </div>
+            <div class="w-full">
+              <label for="rate" class="block mb-2 text-sm font-medium text-grey-800 ">Rate for the room</label>
+              <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <input id="rate" min="0" step="0.05" name="rate" type="number" autocomplete="number" placeholder="Rate for the room" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
               </div>
-            <div class="w-full ml-2">
-              <label for="usendfame-success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Type</label>
-              <select id="usendfame-success" class="bg-green-50 border border-green-500 text-green-900 placeholder-green-700 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-100 dark:border-green-400" placeholder="Bonnie Green">
-                <option value="" disabled selected>--SELECT TYPE--</option>
-                <option value="">Single room</option>
-                <option value="">Double room</option>
-                <option value="">Triple room</option>
-                <option value="">Suite</option>
-              </select>
-              <p class="mt-2 text-sm text-green-600 dark:text-green-500"><span class="font-medium">Alright!</span> Username available!</p>
             </div>
           </div>
-          <div>
-            <label for="username-error" class="block mb-2 text-sm font-medium text-red-700 dark:text-red-500">Your name</label>
-            <input type="text" id="username-error" class="bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400" placeholder="Bonnie Green">
-            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> Username already taken!</p>
+          <div class="mb-6 flex md:flex-row flex-col justify-between gap-6">
+            <div class="w-full">
+              <label for="start_date" class="block mb-2 text-sm font-medium text-grey-800 ">Room Number</label>
+              <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <input id="start_date" name="start_date" type="date" autocomplete="number" placeholder="start date of the rate" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+              </div>
+            </div>
+            <div class="w-full">
+              <label for="end_date" class="block mb-2 text-sm font-medium text-grey-800 ">Room Number</label>
+              <div class="mt-1 sm:mt-0 sm:col-span-2">
+                <input id="end_date" name="end_date"  type="date" autocomplete="date" placeholder="end date of the rate" class="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md">
+              </div>
+            </div>
           </div>
           <div class="flex justify-end">
             <button type="button" data-modal-toggle="add-room-rate-modal" class="mr-3 flex py-2 px-3 bg-gray-400 rounded-lg text-white">
               Cancel
             </button>
-            <button class="flex py-2 px-3 bg-blue-400 rounded-lg text-white">
-              Add Room rates
+            <button type="submit" class="flex py-2 px-3 bg-blue-400 rounded-lg text-white">
+              Add rate
             </button>
           </div>
         </form>
@@ -51,3 +54,25 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  fetchData()
+  function fetchData() {
+    const tableRooms = document.getElementById("number_room");
+    $.ajax({
+      url : "/admin/room/get",
+      type : "GET",
+      success : function (response){
+        const dataRooms = JSON.parse(response)
+        console.log(dataRooms)
+        let stringHtml=""
+        for (const room of dataRooms) {
+          stringHtml += "<option value="+room.id_room+">"+room.room_number+"</option>"
+        }
+        tableRooms.innerHTML += stringHtml;
+      },
+      error : function (error){
+        console.error(error)
+      }
+    })
+  }
+</script>

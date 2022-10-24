@@ -13,4 +13,10 @@ public class Payment {
     public int booking_id;
     public Status status;
     public Cards type_card;
+
+    public Payment(int booking_id, Status status, Cards type_card){
+        this.booking_id = booking_id;
+        this.status = status;
+        this.type_card = type_card;
+    }
 }

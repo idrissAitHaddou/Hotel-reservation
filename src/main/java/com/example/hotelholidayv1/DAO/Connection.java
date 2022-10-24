@@ -13,7 +13,6 @@ public class Connection {
         try{
             Class.forName("org.postgresql.Driver");
             java.sql.Connection connection = DriverManager.getConnection(url, user, password);
-            System.out.println("connection successfully");
             return connection.createStatement();
         }catch (SQLException ex){
             System.out.println(ex.getMessage());

@@ -15,6 +15,7 @@ public class RouterAdminServlet extends HttpServlet {
                 view(request, response, "../admin/views/dashboard/index.jsp");
                 break;
             case "/admin/rooms":
+
                 view(request, response, "../admin/views/rooms/index.jsp");
                 break;
             case "/admin/profile":
