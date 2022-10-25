@@ -1,7 +1,11 @@
 package com.example.hotelholidayv1.room;
 import com.example.hotelholidayv1.DAO.DAOManager;
+import com.example.hotelholidayv1.helpers.DataConverter;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 public class RoomRepository extends DAOManager {
     static ResultSet all(int id){
         StringBuilder query = new StringBuilder("SELECT * FROM rooms ORDER BY room_number ASC");
@@ -11,7 +15,7 @@ public class RoomRepository extends DAOManager {
         query.append(";");
         return get(query);
     }
-    static boolean save(Room room){
+    static boolean save(Room room, List<String> images) throws SQLException {
         StringBuilder query = new StringBuilder("INSERT INTO rooms ( room_number, floor_number, promo_id, type_room ) values(");
         query.append(room.room_number);
         query.append(",").append("'").append(room.floor_number).append("'");
@@ -21,7 +25,22 @@ public class RoomRepository extends DAOManager {
             query.append(",").append(" NULL ");
         query.append(",").append("'").append(room.type_room).append("'");
         query.append(");");
-        return post(query);
+        int room_id = -1;
+        post(query);
+        StringBuilder selectQuery = new StringBuilder("SELECT max(id_room) from rooms;");
+        ResultSet max = get(selectQuery);
+        if(max.next()){
+            room_id = DataConverter.parseInt(max.getString("max"));
+        }
+        if(images.size()>0 && room_id != -1){
+            StringBuilder queryImage = new StringBuilder("INSERT INTO images ( src, room_id ) values");
+            for (String image:images) {
+                queryImage.append("('").append(image).append("'");
+                queryImage.append(",'").append(room_id).append("')");
+            }
+            return post(queryImage);
+        }
+        return false;
     }
     static boolean update(Room room){
         StringBuilder query = new StringBuilder("UPDATE rooms SET");

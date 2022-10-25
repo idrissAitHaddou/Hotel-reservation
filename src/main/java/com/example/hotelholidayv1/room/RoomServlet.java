@@ -6,15 +6,16 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 @WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/one", "/admin/room/delete"})
-
+@MultipartConfig
 public class RoomServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,14 +73,57 @@ public class RoomServlet extends HttpServlet {
         out.flush();
     }
 
-    private void storeRoomController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            //fetch form data
+
+            Part part = request.getPart("file");
+            String fileName = part.getSubmittedFileName();
+
+            String path = getServletContext().getRealPath("/asses/"+fileName);
+
+            InputStream is = part.getInputStream();
+            boolean test = uploadFile(is,path);
+            if(test){
+                out.println("uploaded");
+            }else{
+                out.println("something wrong");
+            }
+        }
+    }
+
+    public boolean uploadFile(InputStream is, String path){
+        boolean test = false;
+        try{
+            byte[] byt = new byte[is.available()];
+            is.read();
+
+            FileOutputStream fops = new FileOutputStream(path);
+            fops.write(byt);
+            fops.flush();
+            fops.close();
+
+            test = true;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return test;
+    }
+
+    private void storeRoomController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         if (!request.getParameter("room_number").trim().isEmpty() && !request.getParameter("floor_number").trim().isEmpty() && !request.getParameter("type_room").trim().isEmpty()){
             Room room = convertToRoomObject(request);
-            RoomService.storeRoomService(room);
+            List<String> images = new ArrayList<>();
+            images.add(request.getParameter("images"));
+            System.out.println(request.getParameter("images"));
+            RoomService.storeRoomService(room,images);
             response.sendRedirect("/admin/rooms?success=true&message=Room added successfully!!");
         }else
             response.sendRedirect("/admin/rooms?success=false&message=Room failed to add!!");
-
     }
     private void updateRoomController(HttpServletRequest request,HttpServletResponse response) throws IOException {
         if (!request.getParameter("id_room").trim().isEmpty()&&!request.getParameter("room_number").trim().isEmpty() && !request.getParameter("floor_number").trim().isEmpty() && !request.getParameter("type_room").trim().isEmpty()){

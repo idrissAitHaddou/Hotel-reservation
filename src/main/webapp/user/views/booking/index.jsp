@@ -14,12 +14,14 @@
     }
   </style>
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css"/>
 </head>
 <body>
 
-<jsp:include page="../../component/header.jsp" />
-<jsp:include page="patails/bookingHero.jsp" />
+<jsp:include page="../../component/nav.jsp" >
+  <jsp:param name="current" value="booking"/>
+</jsp:include>
+<jsp:include page="../home/partails/hero.jsp" />
 <jsp:include page="patails/booking.jsp" />
 <jsp:include page="../../component/footer.jsp" />
 

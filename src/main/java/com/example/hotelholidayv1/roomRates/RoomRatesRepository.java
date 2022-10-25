@@ -3,6 +3,7 @@ package com.example.hotelholidayv1.roomRates;
 import com.example.hotelholidayv1.DAO.DAOManager;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 public class RoomRatesRepository extends DAOManager {
     static ResultSet all(int id){

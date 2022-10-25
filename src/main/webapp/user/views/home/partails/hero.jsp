@@ -1,7 +1,7 @@
 
 <div class="relative opacity-100 flex flex-col justify-between items-center bg-cover bg-bottom p-10 md:py-32 md:px-16">
 
-    <div class="w-full mr-0" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: -1;background-image:url('https://as1.ftcdn.net/v2/jpg/00/29/13/38/1000_F_29133877_bfA2n7cWV53fto2BomyZ6pyRujJTBwjd.jpg');background-repeat:no-repeat;background-size: cover;filter: contrast(60%);">
+    <div class="w-full mr-0" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: -1;background-image:url('/assets/images/bg.jpg');background-repeat:no-repeat;background-size: cover;filter: contrast(60%);">
 
     </div>
     <div class="h-96 md:h-64" style="filter:none;">
