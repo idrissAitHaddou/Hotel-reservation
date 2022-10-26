@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <html>
 <head>
   <title>Htel</title>
@@ -27,5 +29,28 @@
 
 
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+<script type="text/javascript">
+    fetchRooms()
+    function fetchRooms() {
+    const tableRooms = document.getElementById("rooms-list");
+    tableRooms.innerHTML = "<h2 class='text-green-500'>Data loading...</h2>"
+    $.ajax({
+    url : "/admin/room/get",
+    type : "GET",
+    success : function (response){
+    const dataRooms = JSON.parse(response)
+    console.log(dataRooms)
+    let stringHtml=""
+    for (const room of dataRooms) {
+      stringHtml += "<div class='flex md:flex-row flex-col h-fit md:w-11/12 w-full mx-auto my-6 border'><div class='h-full'><img class='h-48 w-full object-cover' src='/assets/images/rooms/room1.jpg' alt='Front of men&#039;s Basic Tee in black.' class='w-20 rounded-md'></div><div class='ml-6 flex-1 p-6 flex flex-col'><div class='flex'><div class='min-w-0 flex-1'><h4 class='text-sm'><a href='#' class='font-semibold text-2xl text-gray-600 hover:text-gray-800'> "+room.type_room[0]+room.type_room.slice(1).toLowerCase()+(room.type_room !== 'SUITE'? ' Room':'')+" </a></h4><p class='text-base font-medium text-gray-500 w-2/3 mt-4'>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p></div><div class='ml-4 flex-shrink-0 flow-root'><button type='button' class='-m-2.5 bg-white p-2.5 flex items-center justify-center text-gray-400 hover:text-gray-500'><span class='text-3xl font-semibold'>$199</span></button></div></div><div class='flex-1 pt-2 flex items-end w-full justify-end'><button type='button' class='inline-flex items-center justify-center px-4 py-2 border border-[#F97316] text-base text-[#F97316] font-medium rounded-md shadow-sm bg-white hover:text-white hover:bg-[#F97316] '>Book Now</button></div></div></div>";
+    }
+    tableRooms.innerHTML = stringHtml;
+  },
+    error : function (error){
+    console.error(error)
+  }
+  })
+  }
+</script>
 </body>
 </html>
