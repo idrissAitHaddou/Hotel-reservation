@@ -25,7 +25,7 @@
   </nav>
   <div class="overflow-x-auto relative sm:rounded-lg px-6">
     <div class="flex flex-col md:flex-row justify-bewteen item-center">
-<%--      <img class="w-full md:w-2/5 h-72 rounded-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTAM5y6YYn9vU2bZ04BH1NHbbcbdG6pjVIbw&usqp=CAU">--%>
+      <img class="w-full md:w-2/5 h-72 rounded-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTAM5y6YYn9vU2bZ04BH1NHbbcbdG6pjVIbw&usqp=CAU">
       <div class="w-full md:w-3/5 px-3 flex flex-col mt-4 md:mt-0">
         <%-- start upload info promotion --%>
           <div class="w-full">

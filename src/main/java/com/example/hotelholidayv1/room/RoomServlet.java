@@ -17,6 +17,15 @@ import java.util.List;
 @WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/one", "/admin/room/delete"})
 @MultipartConfig
 public class RoomServlet extends HttpServlet {
+    public static final String IMAGES_FOLDER = "/assets/uploads/rooms";
+    public String uploadPath;
+    @Override
+    public void init() throws ServletException {
+        uploadPath = getServletContext().getRealPath( IMAGES_FOLDER );
+        File uploadDir = new File( uploadPath );
+        if ( ! uploadDir.exists() ) uploadDir.mkdir();
+        System.out.println(uploadPath);
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -52,7 +61,7 @@ public class RoomServlet extends HttpServlet {
     }
 
     private void getAllRoomController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-       ResultSet rsRooms = RoomService.getAllRoomService(-1);
+        ResultSet rsRooms = RoomService.getAllRoomService(-1);
         PrintWriter out = response.getWriter();
         List<HashMap<String,Object>> rooms = DataConverter.toList(rsRooms);
         String json = new Gson().toJson(rooms);
@@ -73,58 +82,39 @@ public class RoomServlet extends HttpServlet {
         out.flush();
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            //fetch form data
-
-            Part part = request.getPart("file");
-            String fileName = part.getSubmittedFileName();
-
-            String path = getServletContext().getRealPath("/asses/"+fileName);
-
-            InputStream is = part.getInputStream();
-            boolean test = uploadFile(is,path);
-            if(test){
-                out.println("uploaded");
-            }else{
-                out.println("something wrong");
-            }
-        }
-    }
-
-    public boolean uploadFile(InputStream is, String path){
-        boolean test = false;
-        try{
-            byte[] byt = new byte[is.available()];
-            is.read();
-
-            FileOutputStream fops = new FileOutputStream(path);
-            fops.write(byt);
-            fops.flush();
-            fops.close();
-
-            test = true;
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return test;
-    }
-
     private void storeRoomController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         if (!request.getParameter("room_number").trim().isEmpty() && !request.getParameter("floor_number").trim().isEmpty() && !request.getParameter("type_room").trim().isEmpty()){
             Room room = convertToRoomObject(request);
             List<String> images = new ArrayList<>();
-            images.add(request.getParameter("images"));
-            System.out.println(request.getParameter("images"));
+            try {
+                for ( Part part : request.getParts()) {
+                    String fileName = getFileName( part );
+                    if(!fileName.equals("Default.file")) {
+                        String fullPath = uploadPath + File.separator + fileName;
+                        part.write(fullPath);
+                        images.add(fileName);
+                    }
+                }
+            } catch (ServletException e) {
+                System.out.println(e.getMessage());
+            }
             RoomService.storeRoomService(room,images);
             response.sendRedirect("/admin/rooms?success=true&message=Room added successfully!!");
         }else
             response.sendRedirect("/admin/rooms?success=false&message=Room failed to add!!");
     }
+
+    /*
+     * Récupération du nom du fichier dans la requête.
+     */
+    private String getFileName( Part part ) {
+        for ( String content : part.getHeader( "content-disposition" ).split( ";" ) ) {
+            if ( content.trim().startsWith( "filename" ) )
+                return content.substring( content.indexOf( "=" ) + 2, content.length() - 1 );
+        }
+        return "Default.file";
+    }
+
     private void updateRoomController(HttpServletRequest request,HttpServletResponse response) throws IOException {
         if (!request.getParameter("id_room").trim().isEmpty()&&!request.getParameter("room_number").trim().isEmpty() && !request.getParameter("floor_number").trim().isEmpty() && !request.getParameter("type_room").trim().isEmpty()){
             Room room = convertToRoomObject(request);
@@ -167,5 +157,4 @@ public class RoomServlet extends HttpServlet {
             out.flush();
         }
     }
-
 }
