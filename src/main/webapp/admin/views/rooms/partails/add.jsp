@@ -9,7 +9,7 @@
       </button>
       <div class="py-6 px-6 lg:px-8">
         <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add room</h3>
-        <form class="space-y-6" action="room/store" method="post">
+        <form class="space-y-6" action="room/store" method="post" enctype="multipart/form-data">
           <div class="mb-6 flex md:flex-row flex-col justify-between gap-6">
             <div class="w-full">
               <label for="number_room" class="block mb-2 text-sm font-medium text-grey-800 ">Room Number</label>
