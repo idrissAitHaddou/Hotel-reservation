@@ -36,8 +36,9 @@ public class RoomRepository extends DAOManager {
             StringBuilder queryImage = new StringBuilder("INSERT INTO images ( src, room_id ) values");
             for (String image:images) {
                 queryImage.append("('").append(image).append("'");
-                queryImage.append(",'").append(room_id).append("')");
+                queryImage.append(",'").append(room_id).append("'),");
             }
+            queryImage.deleteCharAt(queryImage.length() - 1);
             return post(queryImage);
         }
         return false;

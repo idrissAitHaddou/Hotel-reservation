@@ -5,7 +5,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
-
 @WebServlet(urlPatterns = {"/booking","/explore","/rooms-suites","/booking-room"})
 public class RouterUserServlet extends HttpServlet {
     @Override
