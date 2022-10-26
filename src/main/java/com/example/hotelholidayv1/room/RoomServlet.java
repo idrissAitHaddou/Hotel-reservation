@@ -81,7 +81,6 @@ public class RoomServlet extends HttpServlet {
         out.println(json);
         out.flush();
     }
-
     private void storeRoomController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         if (!request.getParameter("room_number").trim().isEmpty() && !request.getParameter("floor_number").trim().isEmpty() && !request.getParameter("type_room").trim().isEmpty()){
             Room room = convertToRoomObject(request);
@@ -98,6 +97,8 @@ public class RoomServlet extends HttpServlet {
             } catch (ServletException e) {
                 System.out.println(e.getMessage());
             }
+            images.add(request.getParameter("images"));
+            System.out.println(request.getParameter("images"));
             RoomService.storeRoomService(room,images);
             response.sendRedirect("/admin/rooms?success=true&message=Room added successfully!!");
         }else
