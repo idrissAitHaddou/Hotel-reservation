@@ -139,7 +139,7 @@ public class RoomServlet extends HttpServlet {
             response.sendRedirect("/admin/rooms?success=false&message=Something went wrong!!");
 
     }
-    private void destroyRoomController(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void destroyRoomController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         int id = DataConverter.parseInt(request.getParameter("id"));
         PrintWriter out = response.getWriter();
         if(id != -1){
