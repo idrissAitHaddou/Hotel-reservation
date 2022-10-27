@@ -119,7 +119,6 @@
   }
   // delete room
   function deleteRoom(idRoom){
-    console.log(idRoom)
     $.ajax({
       url : "/admin/room/delete",
       type: "post",
