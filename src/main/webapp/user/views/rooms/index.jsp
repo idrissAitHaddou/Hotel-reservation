@@ -21,7 +21,7 @@
 </div>
 <div >
     <div class="md:text-4xl text-xl font-semibold text-gray-700 flex justify-center my-10">Our Best Rooms</div>
-  <div id="rooms-grid" class="mt-12 md:w-10/12 w-full px-8 mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+  <div id="rooms-grid" class="mt-12 md:w-10/12 w-full px-8 mx-auto grid gap-8 lg:grid-cols-4 lg:max-w-none">
 
   </div>
 
@@ -41,7 +41,7 @@
                 console.log(dataRooms)
                 let stringHtml=""
                 for (const room of dataRooms) {
-                    stringHtml += "<div class='lex flex-col rounded-lg shadow-lg overflow-hidden'> <div class='flex-shrink-0'> <img class='h-48 w-full object-cover' src='/assets/images/rooms/room1.jpg' alt=''> </div> <div class='flex-1 bg-white p-6 flex flex-col justify-between'> <div class='flex-1'> <a href='#' class='block mt-2'> <p class='text-xl font-semibold text-gray-900'>"+room.type_room[0]+room.type_room.slice(1).toLowerCase()+(room.type_room !== 'SUITE'? ' Room':'')+"</p> <p class='mt-3 text-base text-gray-500'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> </a> </div> <p class='text-lg font-bold my-6 '>$250</p> <button type='button' class='inline-flex items-center justify-center px-1 py-2 border border-[#F97316] text-base text-[#F97316] font-medium rounded-md shadow-sm bg-white hover:text-white hover:bg-[#F97316] '>Book Now</button> </div> </div>"
+                    stringHtml += "<div class='flex flex-col rounded-lg shadow-lg overflow-hidden'> <div class='flex-shrink-0'> <img class='h-52 w-full object-cover' src='/assets/images/rooms/room1.jpg' alt=''> </div> <div class='flex-1 bg-white p-6 flex flex-col justify-between'> <div class='flex justify-between items-center '> <a href='#' class='block mt-2 flex '> <p class='text-xl font-semibold text-gray-900'>"+room.type_room[0]+room.type_room.slice(1).toLowerCase()+(room.type_room !== 'SUITE'? ' Room':'')+"</p> </a><p class='text-lg font-bold my-6 '>$250</p> </div>  <button type='button' class='inline-flex items-center justify-center px-1 py-2 border border-[#F97316] text-base text-[#F97316] font-medium rounded-md shadow-sm bg-white hover:text-white hover:bg-[#F97316] '>Book Now</button> </div> </div>"
                 }
                 tableRooms.innerHTML = stringHtml;
             },

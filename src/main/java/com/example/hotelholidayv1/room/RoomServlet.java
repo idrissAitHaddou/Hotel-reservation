@@ -7,14 +7,13 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.*;
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/one", "/admin/room/delete"})
+@WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/details","/admin/room/one", "/admin/room/delete"})
 @MultipartConfig
 public class RoomServlet extends HttpServlet {
     public static final String IMAGES_FOLDER = "/assets/uploads/rooms";
@@ -47,11 +46,11 @@ public class RoomServlet extends HttpServlet {
         String path = request.getServletPath()!=null?request.getServletPath():"";
         switch(path) {
             case "/admin/room/get": getAllRoomController(request,response); break;
+            case "/admin/room/details": getAllRoomWithDetailsController(request,response); break;
             case "/admin/room/one": getOneRoomController(request,response); break;
             case "/admin/room/store": storeRoomController(request,response); break;
             case "/admin/room/update": updateRoomController(request,response); break;
             case "/admin/room/delete":  destroyRoomController(request, response); break;
-
         }
     }
 
@@ -64,6 +63,18 @@ public class RoomServlet extends HttpServlet {
         ResultSet rsRooms = RoomService.getAllRoomService(-1);
         PrintWriter out = response.getWriter();
         List<HashMap<String,Object>> rooms = DataConverter.toList(rsRooms);
+        String json = new Gson().toJson(rooms);
+        out.println(json);
+        out.flush();
+    }
+    private void getAllRoomWithDetailsController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String start_date = request.getParameter("start_date") != null ? request.getParameter("start_date"):null;
+        String end_date = request.getParameter("end_date") != null ? request.getParameter("end_date"):null;
+        ResultSet rsRooms = RoomService.getAllRoomWithDetailsService(start_date,end_date);
+        PrintWriter out = response.getWriter();
+        List<HashMap<String,Object>> rooms = DataConverter.toList(rsRooms);
+        List<HashMap<String,Object>> images = DataConverter.toList(rsRooms);
+
         String json = new Gson().toJson(rooms);
         out.println(json);
         out.flush();

@@ -9,6 +9,9 @@ public class RoomService {
     public static ResultSet getAllRoomService(int id) {
         return RoomRepository.all(id);
     }
+    public static ResultSet getAllRoomWithDetailsService(String startDate, String endDate) {
+        return RoomRepository.allWithImagesAndRates(startDate, endDate);
+    }
     public static void storeRoomService(Room room, List<String> images) throws SQLException {
         RoomRepository.save(room,images);
     }
