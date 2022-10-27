@@ -97,12 +97,22 @@ public class RoomServlet extends HttpServlet {
             Room room = convertToRoomObject(request);
             List<String> images = new ArrayList<>();
             try {
+                long unixTime;
+                System.out.println(request.getParts().size());
                 for ( Part part : request.getParts()) {
                     String fileName = getFileName( part );
-                    if(!fileName.equals("Default.file")) {
+                    if(!fileName.equals("Default.file") && fileName != null) {
+                        unixTime = System.currentTimeMillis() / 1000L;
                         String fullPath = uploadPath + File.separator + fileName;
+                        String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+                        String name = fileName.substring(0,fileName.lastIndexOf('.') - 1);
+                        String newName = name + unixTime + "." + extension;
+                        String newFileName = uploadPath + File.separator + newName;
                         part.write(fullPath);
-                        images.add(fileName);
+                        File file1 = new File(fullPath);
+                        File file2 = new File(newFileName);
+                        file1.renameTo(file2);
+                        images.add(newFileName);
                     }
                 }
             } catch (ServletException e) {
@@ -141,7 +151,7 @@ public class RoomServlet extends HttpServlet {
             response.sendRedirect("/admin/rooms?success=false&message=Something went wrong!!");
 
     }
-    private void destroyRoomController(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void destroyRoomController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         int id = DataConverter.parseInt(request.getParameter("id"));
         PrintWriter out = response.getWriter();
         if(id != -1){

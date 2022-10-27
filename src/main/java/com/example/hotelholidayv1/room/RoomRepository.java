@@ -43,8 +43,10 @@ public class RoomRepository extends DAOManager {
         if(images.size()>0 && room_id != -1){
             StringBuilder queryImage = new StringBuilder("INSERT INTO images ( src, room_id ) values");
             for (String image:images) {
-                queryImage.append("('").append(image).append("'");
-                queryImage.append(",'").append(room_id).append("'),");
+                if(image != null) {
+                    queryImage.append("('").append(image).append("'");
+                    queryImage.append(",'").append(room_id).append("'),");
+                }
             }
             queryImage.deleteCharAt(queryImage.length() - 1);
             return post(queryImage);
@@ -69,5 +71,10 @@ public class RoomRepository extends DAOManager {
         query.append(";");
         return post(query);
     }
-
+    static ResultSet allImages(int roomId){
+        StringBuilder query = new StringBuilder("SELECT * FROM images");
+        query.append(" WHERE room_id = ").append(roomId);
+        query.append(";");
+        return get(query);
+    }
 }
