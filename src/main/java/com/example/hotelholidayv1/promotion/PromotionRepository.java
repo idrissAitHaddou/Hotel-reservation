@@ -5,17 +5,18 @@ import com.example.hotelholidayv1.DAO.DAOManager;
 import java.sql.ResultSet;
 
 public class PromotionRepository extends DAOManager {
-    ResultSet all(int id){
+    static ResultSet all(){
         StringBuilder query = new StringBuilder("SELECT * FROM promotions ");
-        if(id != 0){
-            query.append(" WHERE id_promotion = ").append(id);
-        }
         query.append(";");
         return get(query);
     }
-    boolean save(Promotion promotion){
-        StringBuilder query = new StringBuilder("INSERT INTO promotions SET (  image_src,percentage ,start_date, end_date, status ) values(");
-        query.append(promotion.image_src);
+    static ResultSet lastPromotion() {
+        StringBuilder query = new StringBuilder("SELECT * FROM promotions ORDER BY id_promo DESC LIMIT 1;");
+        return get(query);
+    }
+    static boolean save(Promotion promotion){
+        StringBuilder query = new StringBuilder("INSERT INTO promotions ( image_src, percentage ,start_date, end_date, status ) values(");
+        query.append("").append("'").append(promotion.image_src).append("'");
         query.append(",").append("'").append(promotion.percentage).append("'");
         query.append(",").append("'").append(promotion.start_date).append("'");
         query.append(",").append("'").append(promotion.end_date).append("'");
@@ -34,8 +35,8 @@ public class PromotionRepository extends DAOManager {
         return post(query);
     }
 
-    boolean delete(int id){
-        StringBuilder query = new StringBuilder("DELETE FROM promotions WHERE id_promotion = ");
+     static boolean delete(int id){
+        StringBuilder query = new StringBuilder("DELETE FROM promotions WHERE id_promo != ");
         query.append(id);
         query.append(";");
         return post(query);

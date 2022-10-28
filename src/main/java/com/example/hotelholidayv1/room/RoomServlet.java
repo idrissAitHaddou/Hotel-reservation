@@ -23,7 +23,6 @@ public class RoomServlet extends HttpServlet {
         uploadPath = getServletContext().getRealPath( IMAGES_FOLDER );
         File uploadDir = new File( uploadPath );
         if ( ! uploadDir.exists() ) uploadDir.mkdir();
-        System.out.println(uploadPath);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

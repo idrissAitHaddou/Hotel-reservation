@@ -27,10 +27,10 @@
   </nav>
   <div class="overflow-x-auto relative sm:rounded-lg px-6">
     <div class="flex flex-col md:flex-row justify-bewteen item-center">
-      <img class="w-full md:w-2/5 h-72 rounded-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTAM5y6YYn9vU2bZ04BH1NHbbcbdG6pjVIbw&usqp=CAU">
+      <img id="promo-image" class="w-full md:w-2/5 h-72 rounded-lg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnKM_QNeI4X-o7yyJRpIzXixpu4NGvA_p4lA&usqp=CAU">
       <div class="w-full md:w-3/5 px-3 flex flex-col mt-4 md:mt-0">
         <%-- start upload info promotion --%>
-          <form id="addPromotion" action="PromotionServlet" method="post" enctype="multipart/form-data">
+          <form id="addPromotionForm" action="javascript:addPromotion()" method="post" enctype="multipart/form-data">
             <div class="w-full">
               <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                 <div class="space-y-1 text-center">
@@ -40,7 +40,7 @@
                   <div class="flex text-sm text-gray-600">
                     <label for="file-upload" class="relative cursor-pointer rounded-md font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                       <span>Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                      <input id="file-upload" accept="image/*" id="file-upload" name="file-upload" type="file" class="sr-only">
                     </label>
                     <p class="pl-1">or drag and drop</p>
                   </div>
@@ -50,14 +50,24 @@
             </div>
             <div class="flex my-6 justify-center">
               <div class="w-1/2 flex item-center">
-                <input value="0" type="number" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                <input value="0" type="number" id="posentage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                 <span class="font-bold mr-3 mt-1.5">%</span>
               </div>
               <div class="w-1/2">
                 <button type="button" data-modal-toggle="get-all-modal" class="bg-white border focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">Choose rooms</button>
               </div>
             </div>
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center">Submit</button>
+            <div class="flex my-6 justify-center">
+              <div class="w-1/2 flex flex-col item-center">
+                <span class="mr-3 mt-1.5">start date</span>
+                <input value="0" type="date" id="start-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+              </div>
+              <div class="w-1/2 flex flex-col item-center ml-2">
+                <span class="mr-3 mt-1.5">end date</span>
+                <input value="0" type="date" id="end-date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+              </div>
+            </div>
+            <input type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center" value="Update">
           </form>
           <%-- end upload info promotion --%>
         </div>
@@ -66,11 +76,65 @@
   </div>
 </div>
 <script>
-  $(function(){
-    $("#addPromotion").submit(function(){
-      console.log("submited")
+
+  // get all rooms
+  getAllRooms()
+  function getAllRooms() {
+    var ulRoomsHtml = '';
+    $.ajax({
+      url  : "/admin/room/get",
+      type : "get",
+      success : function (response){
+        const res = JSON.parse(response);
+        res.forEach((item) => {
+          console.log(item.room_number)
+          ulRoomsHtml += '<li class="w-full"> <div class="flex items-center pl-3">';
+          ulRoomsHtml +='<input id="vue-checkbox-list" type="checkbox" value="' + item.id_room + '" class="w-4 h-4 bg-green-100 text-green-500 rounded checked:bg-green-500 focus:ring-green-500 focus:bg-green-500">';
+          ulRoomsHtml +='<label for="vue-checkbox-list" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">' + item.room_number + '</label>';
+          ulRoomsHtml +='</div> </li>';
+        })
+        $("#allRooms").html(ulRoomsHtml);
+      },
+      error : function (error){
+        console.error(error)
+      }
     })
-  });
-</script>
+  }
+  // add promotion
+  function addPromotion() {
+    const formData = new FormData();
+    let file = $("#file-upload")[0].files[0]
+    let percentage = $("#posentage").val()
+    let startDate = $("#start-date").val()
+    let endDate = $("#end-date").val()
+    var roomsId = Array();
+    $('input[type=checkbox]:checked').each(function () {
+      let sThisVal = (this.checked ? $(this).val() : "");
+      roomsId.push(sThisVal)
+    });
+    formData.append("fileSrc", file)
+    formData.append("percentageParam", percentage)
+    formData.append("startDateParam", startDate)
+    formData.append("endDateParam", endDate)
+    formData.append("roomsParam", JSON.stringify(roomsId))
+    $.ajax({
+      url : "/admin/promotion/update",
+      type: "post",
+      data: formData,
+      processData: false,
+      contentType: false,
+      enctype: 'multipart/form-data',
+      success : function (response){
+        const res = JSON.parse(response);
+        $("#promo-image").attr("src", "${pageContext.request.contextPath}/assets/uploads/"+ res.src);
+      },
+      error : function (error){
+        console.error("error")
+        console.error(error)
+      }
+    })
+  }
+
+</script  >
 </body>
 </html>
