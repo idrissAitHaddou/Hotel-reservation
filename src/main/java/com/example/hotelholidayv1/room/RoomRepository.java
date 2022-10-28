@@ -15,12 +15,22 @@ public class RoomRepository extends DAOManager {
         query.append(";");
         return get(query);
     }
+
     static ResultSet allWithImagesAndRates(String startDate,String endDate){
         StringBuilder query = new StringBuilder("SELECT * FROM rooms inner join room_rates rr on rooms.id_room = rr.room_id ");
         if(startDate != null && endDate != null ){
             query.append(" WHERE start_date>= ").append("'").append(startDate).append("'").append( " and end_date <= ").append("'").append(endDate).append("'");
         }
         query.append(";");
+        return get(query);
+    }
+    static ResultSet roomWithImagesAndRates(int idRoom){
+        StringBuilder query = new StringBuilder("SELECT * FROM rooms inner join room_rates rr on rooms.id_room = rr.room_id ");
+        if(idRoom != -1 ){
+            query.append(" WHERE rooms.id_room = ").append(idRoom);
+        }
+        query.append(";");
+        System.out.println(query);
         return get(query);
     }
     static boolean save(Room room, List<String> images) throws SQLException {

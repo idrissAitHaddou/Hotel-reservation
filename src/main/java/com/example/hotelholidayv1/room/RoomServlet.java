@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/details","/admin/room/one", "/admin/room/delete"})
+@WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/details","/admin/room/one/details","/admin/room/one", "/admin/room/delete"})
 @MultipartConfig
 public class RoomServlet extends HttpServlet {
     public static final String IMAGES_FOLDER = "/assets/uploads/rooms";
@@ -47,6 +47,7 @@ public class RoomServlet extends HttpServlet {
         switch(path) {
             case "/admin/room/get": getAllRoomController(request,response); break;
             case "/admin/room/details": getAllRoomWithDetailsController(request,response); break;
+            case "/admin/room/one/details": getOneRoomWithDetailsController(request,response); break;
             case "/admin/room/one": getOneRoomController(request,response); break;
             case "/admin/room/store": storeRoomController(request,response); break;
             case "/admin/room/update": updateRoomController(request,response); break;
@@ -73,7 +74,30 @@ public class RoomServlet extends HttpServlet {
         ResultSet rsRooms = RoomService.getAllRoomWithDetailsService(start_date,end_date);
         PrintWriter out = response.getWriter();
         List<HashMap<String,Object>> rooms = DataConverter.toList(rsRooms);
-        List<HashMap<String,Object>> images = DataConverter.toList(rsRooms);
+        for (HashMap<String,Object> room: rooms) {
+            int idRoom = DataConverter.parseInt(String.valueOf(room.get("id_room")));
+            System.out.println(idRoom);
+            ResultSet rsImages = RoomService.getAllImageService(idRoom);
+            List<HashMap<String,Object>> images = DataConverter.toList(rsImages);
+            room.put("images",images);
+        }
+
+        String json = new Gson().toJson(rooms);
+        out.println(json);
+        out.flush();
+    }
+    private void getOneRoomWithDetailsController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        System.out.println(request.getParameter("id"));
+        int idRoom = request.getParameter("id") != null ? DataConverter.parseInt(request.getParameter("id")):-1;
+        ResultSet rsRooms = RoomService.getOneRoomWithDetailsService(idRoom);
+        PrintWriter out = response.getWriter();
+        List<HashMap<String,Object>> rooms = DataConverter.toList(rsRooms);
+        for (HashMap<String,Object> room: rooms) {
+            System.out.println(idRoom);
+            ResultSet rsImages = RoomService.getAllImageService(idRoom);
+            List<HashMap<String,Object>> images = DataConverter.toList(rsImages);
+            room.put("images",images);
+        }
 
         String json = new Gson().toJson(rooms);
         out.println(json);
