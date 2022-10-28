@@ -33,7 +33,6 @@ public class RoomService {
         while (imagesOnRoom.next()) {
             File file = new File(imagesOnRoom.getString("src"));
             if(file.exists()) { file.delete(); }
-            System.out.println(imagesOnRoom.getString("room_id"));
         }
         return RoomRepository.delete(id);
     }
