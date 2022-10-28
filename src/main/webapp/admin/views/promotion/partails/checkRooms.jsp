@@ -9,55 +9,19 @@
       </button>
       <div class="py-6 px-6 lg:px-8">
         <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add room</h3>
-        <form class="space-y-6" action="#">
-            <ul class="items-center grid grid-cols-5 w-full text-sm font-medium text-gray-900 bg-white">
+        <div class="space-y-6">
+            <ul id="allRooms" class="items-center grid grid-cols-5 w-full text-sm font-medium text-gray-900 bg-white">
               <li class="w-full">
                 <div class="flex items-center pl-3">
                   <input id="vue-checkbox-list" type="checkbox" value="" class="w-4 h-4 bg-green-100 text-green-500 rounded checked:bg-green-500 focus:ring-green-500 focus:bg-green-500">
                   <label for="vue-checkbox-list" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Vue JS</label>
                 </div>
               </li>
-              <li class="w-full">
-                <div class="flex items-center pl-3">
-                  <input id="vue-cheeckbox-list" type="checkbox" value="" class="w-4 h-4 bg-green-100 text-green-500 rounded checked:bg-green-500 focus:ring-green-500 focus:bg-green-500">
-                  <label for="vue-checkbox-list" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Vue JS</label>
-                </div>
-              </li>
-              <li class="w-full">
-                <div class="flex items-center pl-3">
-                  <input id="vue-cheerackbox-list" type="checkbox" value="" class="w-4 h-4 bg-green-100 text-green-500 rounded checked:bg-green-500 focus:ring-green-500 focus:bg-green-500">
-                  <label for="vue-checkbox-list" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Vue JS</label>
-                </div>
-              </li>
-              <li class="w-full">
-                <div class="flex items-center pl-3">
-                  <input id="vue-cheeerckbox-list" type="checkbox" value="" class="w-4 h-4 bg-green-100 text-green-500 rounded checked:bg-green-500 focus:ring-green-500 focus:bg-green-500">
-                  <label for="vue-checkbox-list" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Vue JS</label>
-                </div>
-              </li>
-              <li class="w-full">
-                <div class="flex items-center pl-3">
-                  <input id="vue-cheeckbrox-list" type="checkbox" value="" class="w-4 h-4 bg-green-100 text-green-500 rounded checked:bg-green-500 focus:ring-green-500 focus:bg-green-500">
-                  <label for="vue-checkbox-list" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Vue JS</label>
-                </div>
-              </li>
-              <li class="w-full">
-                <div class="flex items-center pl-3">
-                  <input id="vue-cheeeurckbox-list" type="checkbox" value="" class="w-4 h-4 bg-green-100 text-green-500 rounded checked:bg-green-500 focus:ring-green-500 focus:bg-green-500">
-                  <label for="vue-checkbox-list" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Vue JS</label>
-                </div>
-              </li>
-              <li class="w-full">
-                <div class="flex items-center pl-3">
-                  <input id="vue-cheeackbrox-list" type="checkbox" value="" class="w-4 h-4 bg-green-100 text-green-500 rounded checked:bg-green-500 focus:ring-green-500 focus:bg-green-500">
-                  <label for="vue-checkbox-list" class="py-3 ml-2 w-full text-sm font-medium text-gray-900">Vue JS</label>
-                </div>
-              </li>
             </ul>
           <div class="flex justify-end">
-            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Valider</button>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" data-modal-toggle="get-all-modal">Valider</button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

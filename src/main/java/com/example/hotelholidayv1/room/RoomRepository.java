@@ -57,8 +57,16 @@ public class RoomRepository extends DAOManager {
         return post(query);
     }
 
-    static boolean delete(int id){
-        StringBuilder query = new StringBuilder("DELETE FROM rooms WHERE id_room = ");
+    public static boolean updateOne(int room_id, int promo_id){
+        StringBuilder query = new StringBuilder("UPDATE rooms SET ");
+        query.append("promo_id = ").append(promo_id);
+        query.append(" WHERE id_room = ").append(room_id);
+        System.out.println(query);
+        return post(query);
+    }
+
+    public static boolean delete(int id){
+        StringBuilder query = new StringBuilder("DELETE FROM promotions WHERE id_promo = ");
         query.append(id);
         query.append(";");
         return post(query);
