@@ -11,14 +11,18 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 public class PromotionService {
+    public static ResultSet getAllPromoService() {
+        return PromotionRepository.all();
+    }
     public static String addPromotionservice(HttpServletRequest request, Integer[] roomsId, Part file, String uploadPath) throws ParseException, IOException, SQLException {
         int isIdPromo = 0;
         String newFileName = "";
         long unixTime = System.currentTimeMillis() / 1000L;
-        String fileName = getFileName( file );
+        String fileName = "";
+        if(file != null) { fileName = getFileName( file ); }
         String newName = "";
         try {
-            if(!fileName.equals("Default.file") && fileName != null) {
+            if(!fileName.equals("Default.file") && fileName != null && file != null) {
                 unixTime = System.currentTimeMillis() / 1000L;
                 String fullPath = uploadPath + File.separator + fileName;
                 String extension = fileName.substring(fileName.lastIndexOf('.') + 1);
@@ -41,9 +45,13 @@ public class PromotionService {
             }
             ResultSet promotions = PromotionRepository.all();
             while (promotions.next()) {
-                if(Integer.parseInt(promotions.getString("id_promo")) != isIdPromo) {
+                if(Integer.parseInt(promotions.getString("id_promo")) != isIdPromo && file != null) {
                     File imagePromo = new File(uploadPath + File.separator + promotions.getString("image_src"));
                     if(imagePromo.exists()) { imagePromo.delete(); }
+                }
+                if(Integer.parseInt(promotions.getString("id_promo")) != isIdPromo && file == null) {
+                    PromotionRepository.updatePromoImgRepository(isIdPromo, promotions.getString("image_src"));
+                    newName = promotions.getString("image_src");
                 }
             }
             PromotionRepository.delete(isIdPromo);

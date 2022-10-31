@@ -24,21 +24,27 @@ public class PromotionRepository extends DAOManager {
         query.append(");");
         return post(query);
     }
-    boolean update(Promotion promotion,int id){
-        StringBuilder query = new StringBuilder("UPDATE promotions SET");
-        query.append(" percentage = ").append("'").append(promotion.percentage).append("'");
-        query.append(" start_date = ").append("'").append(promotion.start_date).append("'");
-        query.append(" end_date = ").append("'").append(promotion.end_date).append("'");
-        query.append(" image_src = ").append("'").append(promotion.image_src).append("'");
-        query.append(" status = ").append("'").append(promotion.status).append("'");
-        query.append(" WHERE id_promotion = ").append(id);
-        return post(query);
-    }
+//    boolean update(Promotion promotion,int id){
+//        StringBuilder query = new StringBuilder("UPDATE promotions SET");
+//        query.append(" percentage = ").append("'").append(promotion.percentage).append("'");
+//        query.append(" start_date = ").append("'").append(promotion.start_date).append("'");
+//        query.append(" end_date = ").append("'").append(promotion.end_date).append("'");
+//        query.append(" image_src = ").append("'").append(promotion.image_src).append("'");
+//        query.append(" status = ").append("'").append(promotion.status).append("'");
+//        query.append(" WHERE id_promotion = ").append(id);
+//        return post(query);
+//    }
 
      static boolean delete(int id){
         StringBuilder query = new StringBuilder("DELETE FROM promotions WHERE id_promo != ");
         query.append(id);
         query.append(";");
+        return post(query);
+    }
+    static boolean updatePromoImgRepository(int idPromo, String image) {
+        StringBuilder query = new StringBuilder("UPDATE promotions SET");
+        query.append(" image_src = ").append("'").append(image).append("'");
+        query.append(" WHERE id_promo = ").append(idPromo);
         return post(query);
     }
 }

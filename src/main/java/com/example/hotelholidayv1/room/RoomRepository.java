@@ -8,7 +8,7 @@ import java.util.List;
 
 public class RoomRepository extends DAOManager {
     static ResultSet all(int id){
-        StringBuilder query = new StringBuilder("SELECT * FROM rooms ORDER BY room_number ASC");
+        StringBuilder query = new StringBuilder("SELECT * FROM rooms");
         if(id != -1){
             query.append(" WHERE id_room = ").append(id);
         }
@@ -75,6 +75,21 @@ public class RoomRepository extends DAOManager {
         return post(query);
     }
 
+    static boolean addImages(int room_id, List<String> images) throws SQLException {
+        if(images.size()>0 && room_id != -1){
+            StringBuilder queryImage = new StringBuilder("INSERT INTO images ( src, room_id ) values");
+            for (String image:images) {
+                if(image != null) {
+                    queryImage.append("('").append(image).append("'");
+                    queryImage.append(",'").append(room_id).append("'),");
+                }
+            }
+            queryImage.deleteCharAt(queryImage.length() - 1);
+            return post(queryImage);
+        }
+        return false;
+    }
+
     public static boolean updateOne(int room_id, int promo_id){
         StringBuilder query = new StringBuilder("UPDATE rooms SET ");
         query.append("promo_id = ").append(promo_id);
@@ -84,7 +99,13 @@ public class RoomRepository extends DAOManager {
     }
 
     public static boolean delete(int id){
-        StringBuilder query = new StringBuilder("DELETE FROM promotions WHERE id_promo = ");
+        StringBuilder query = new StringBuilder("DELETE FROM rooms WHERE id_room = ");
+        query.append(id);
+        query.append(";");
+        return post(query);
+    }
+    public static boolean deleteImages(int id){
+        StringBuilder query = new StringBuilder("DELETE FROM images WHERE id_image = ");
         query.append(id);
         query.append(";");
         return post(query);
@@ -92,6 +113,12 @@ public class RoomRepository extends DAOManager {
     static ResultSet allImages(int roomId){
         StringBuilder query = new StringBuilder("SELECT * FROM images");
         query.append(" WHERE room_id = ").append(roomId);
+        query.append(";");
+        return get(query);
+    }
+    static ResultSet allImagesWithId(int imageId){
+        StringBuilder query = new StringBuilder("SELECT * FROM images");
+        query.append(" WHERE id_image = ").append(imageId);
         query.append(";");
         return get(query);
     }
