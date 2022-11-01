@@ -1,45 +1,85 @@
 package com.example.hotelholidayv1.user;
 
+import com.example.hotelholidayv1.helpers.DataConverter;
+import com.example.hotelholidayv1.roomRates.RoomRates;
+import com.example.hotelholidayv1.roomRates.RoomRatesService;
+import com.google.gson.Gson;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 
-@WebServlet({"/admin/store", "/admin/update", "/admin/get", "/admin/delete"})
+@WebServlet({"/admin/store", "/admin/update", "/admin/get", "/admin/delete", "/admin/check/password"})
 @MultipartConfig
 public class UserAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Mapping(request, response);
+        try {
+            Mapping(request, response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Mapping(request, response);
-    }
-    public void Mapping(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        String path = request.getServletPath()!=null?request.getServletPath():"";
-        switch(path) {
-            case "/admin/get": getAllUserController(); break;
-            case "/admin/store": storeUserController(request); break;
-            case "/admin/update": updateUserController(); break;
-            case "/admin/delete": destroyUserController(); break;
+        try {
+            Mapping(request, response);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
+
+    public void Mapping(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        String path = request.getServletPath()!=null?request.getServletPath():"";
+        switch(path) {
+            case "/admin/get": getAllUserController(request, response); break;
+            case "/admin/update": updateUserController(request, response); break;
+            case "/admin/check/password": checkPassowrdUserController(request, response); break;
+        }
+    }
+
     public User convertToUserObject(HttpServletRequest request) {
         return new User(request.getParameter("firstname"), request.getParameter("lastname"),
                 request.getParameter("email"), request.getParameter("password"));
     }
-    public void getAllUserController() {
+
+    public void getAllUserController(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        ResultSet rsRooms = UserService.getAllUserService(-1);
+        PrintWriter out = response.getWriter();
+        List<HashMap<String,Object>> rooms = DataConverter.toList(rsRooms);
+        String json = new Gson().toJson(rooms);
+        out.println(json);
+        out.flush();
     }
-    public void storeUserController(HttpServletRequest request) {
-        UserService.storeUserService(convertToUserObject(request));
+
+    public void updateUserController(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = convertToUserObject(request);
+        UserService.updateUserService(user);
+        PrintWriter out = response.getWriter();
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message","success");
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
     }
-    public void updateUserController() {
-        UserService.updateUserService();
+
+    public void checkPassowrdUserController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        User user = convertToUserObject(request);
+        String message = "error";
+        if(UserService.checkPassowrdUserService(user)) { message = "success"; }
+        PrintWriter out = response.getWriter();
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message",message);
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
     }
-    public void destroyUserController() {
-        UserService.deleteUserService();
-    }
+
 }

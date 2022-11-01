@@ -7,9 +7,9 @@ import java.util.List;
 
 public class RoomRatesRepository extends DAOManager {
     static ResultSet all(int id){
-        StringBuilder query = new StringBuilder("SELECT * FROM room_rates ");
+        StringBuilder query = new StringBuilder("SELECT r.*, rm.room_number FROM room_rates r, rooms rm where r.room_id = rm.id_room ");
         if(id != -1){
-            query.append(" WHERE id_room_rate = ").append(id);
+            query.append(" and r.id_room_rate = ").append(id);
         }
         query.append(";");
         return get(query);

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Objects;
 
 @WebServlet({"/admin/extra/store", "/admin/extra/update", "/admin/extra/get","/admin/extra/one", "/admin/extra/delete"})
-
+@MultipartConfig
 public class ExtrasServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -74,51 +74,35 @@ public class ExtrasServlet extends HttpServlet {
     }
 
     private void storeExtraController(HttpServletRequest request, HttpServletResponse response) throws  IOException {
-        if (!request.getParameter("type_extra").trim().isEmpty() && !request.getParameter("rate").trim().isEmpty()){
             Extras extras = convertToExtraObject(request);
             ExtrasService.storeExtrasService(extras);
-            response.sendRedirect("/admin/extras?success=true&message=Extras added successfully!!");
-        }else
-            response.sendRedirect("/admin/extras?success=false&message=Extras failed to add!!");
-
+            PrintWriter out = response.getWriter();
+            HashMap<String, String> isResponse = new HashMap<>();
+            isResponse.put("message","success");
+            String json = new Gson().toJson(isResponse);
+            out.println(json);
+            out.flush();
     }
     private void updateExtraController(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        if (!request.getParameter("id_extra").trim().isEmpty()&&!request.getParameter("rate").trim().isEmpty() && !request.getParameter("type_extra").trim().isEmpty()){
             Extras extra = convertToExtraObject(request);
-            if (extra.id_extra != 0 && ExtrasService.updateExtrasService(extra))
-                response.sendRedirect("/admin/extras?success=true&message=Extras updated successfully!!");
-            else
-                response.sendRedirect("/admin/extras?success=false&message=Extras failed to update!!");
-
-        }else
-            response.sendRedirect("/admin/extras?success=false&message=Something went wrong!!");
+            ExtrasService.updateExtrasService(extra);
+            PrintWriter out = response.getWriter();
+            HashMap<String, String> isResponse = new HashMap<>();
+            isResponse.put("message","success");
+            String json = new Gson().toJson(isResponse);
+            out.println(json);
+            out.flush();
 
     }
     private void destroyExtraController(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = DataConverter.parseInt(request.getParameter("id"));
+        ExtrasService.deleteExtrasService(id);
         PrintWriter out = response.getWriter();
-        HashMap<String, Object> success = new HashMap<>();
-        if(id != -1){
-            if(ExtrasService.deleteExtrasService(id)){
-                success.put("success","success");
-                success.put("message","Extras deleted successfully");
-                String json = new Gson().toJson(success);
-                out.println(json);
-                out.flush();
-            }else{
-                success.put("success","error");
-                success.put("message","Extras failed to delete");
-                String json = new Gson().toJson(success);
-                out.println(json);
-                out.flush();
-            }
-        }else{
-            success.put("success","error");
-            success.put("message","something went wrong");
-            String json = new Gson().toJson(success);
-            out.println(json);
-            out.flush();
-        }
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message","success");
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
     }
 
 }

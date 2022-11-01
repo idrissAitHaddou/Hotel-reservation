@@ -6,9 +6,9 @@ import com.example.hotelholidayv1.DAO.DAOManager;
 import java.sql.ResultSet;
 
 public class BookingRepository extends DAOManager {
-    ResultSet all(int id){
-        StringBuilder query = new StringBuilder("SELECT * FROM bookings ");
-        if(id != 0){
+    static ResultSet all(int id){
+        StringBuilder query = new StringBuilder("select * from bookings ");
+        if(id != -1){
             query.append(" WHERE id_booking = ").append(id);
         }
         query.append(";");
@@ -35,7 +35,7 @@ public class BookingRepository extends DAOManager {
         return post(query);
     }
 
-    boolean delete(int id){
+    static boolean delete(int id){
         StringBuilder query = new StringBuilder("DELETE FROM bookings WHERE id_booking = ");
         query.append(id);
         query.append(";");

@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @WebServlet({"/admin/room-rates/store", "/admin/room-rates/update", "/admin/room-rates/get","/admin/room-rates/one", "/admin/room-rates/delete"})
-
+@MultipartConfig
 public class RoomRatesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,50 +68,33 @@ public class RoomRatesServlet extends HttpServlet {
     }
 
     private void storeRoomRatesController(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (request.getParameter("room_id")!=null && !request.getParameter("rate").trim().isEmpty() && !request.getParameter("start_date").trim().isEmpty()&& !request.getParameter("end_date").trim().isEmpty()){
-            RoomRates roomRates = convertToRoomRatesObject(request);
-            RoomRatesService.storeRoomRatesService(roomRates);
-            response.sendRedirect("/admin/rooms-rates?success=true&message=Room added successfully!!");
-        }else
-            response.sendRedirect("/admin/rooms-rates?success=false&message=Room failed to add!!");
-
+        RoomRates roomRates = convertToRoomRatesObject(request);
+        RoomRatesService.storeRoomRatesService(roomRates);
+        PrintWriter out = response.getWriter();
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message","success");
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
     }
     private void updateRoomRatesController(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        if (!request.getParameter("id_room_rate").trim().isEmpty() && !request.getParameter("rate").trim().isEmpty() && !request.getParameter("start_date").trim().isEmpty() && !request.getParameter("end_date").trim().isEmpty()){
-            RoomRates room = convertToRoomRatesObject(request);
-            if (room.id_room_rate != 0 && RoomRatesService.updateRoomRatesService(room))
-                response.sendRedirect("/admin/rooms-rates?success=true&message=Room rates updated successfully!!");
-            else
-                response.sendRedirect("/admin/rooms-rates?success=false&message=Room rates failed to update!!");
-
-        }else
-            response.sendRedirect("/admin/rooms-rates?success=false&message=Something went wrong!!");
-
+        RoomRates room = convertToRoomRatesObject(request);
+        RoomRatesService.updateRoomRatesService(room);
+        PrintWriter out = response.getWriter();
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message","success");
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
     }
     private void destroyRoomRatesController(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = DataConverter.parseInt(request.getParameter("id"));
+        RoomRatesService.deleteRoomRatesService(id);
         PrintWriter out = response.getWriter();
-        HashMap<String, Object> success = new HashMap<>();
-        if(id != -1){
-            if(RoomRatesService.deleteRoomRatesService(id)){
-                success.put("success","success");
-                success.put("message","Room deleted successfully");
-                String json = new Gson().toJson(success);
-                out.println(json);
-                out.flush();
-            }else{
-                success.put("success","error");
-                success.put("message","Room failed to delete");
-                String json = new Gson().toJson(success);
-                out.println(json);
-                out.flush();
-            }
-        }else{
-            success.put("success","error");
-            success.put("message","something went wrong");
-            String json = new Gson().toJson(success);
-            out.println(json);
-            out.flush();
-        }
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message","success");
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
     }
 }
