@@ -46,7 +46,6 @@ public class ExtrasServlet extends HttpServlet {
             case "/admin/extra/store": storeExtraController(request,response); break;
             case "/admin/extra/update": updateExtraController(request,response); break;
             case "/admin/extra/delete":  destroyExtraController(request, response); break;
-
         }
     }
 
@@ -74,24 +73,24 @@ public class ExtrasServlet extends HttpServlet {
     }
 
     private void storeExtraController(HttpServletRequest request, HttpServletResponse response) throws  IOException {
-            Extras extras = convertToExtraObject(request);
-            ExtrasService.storeExtrasService(extras);
-            PrintWriter out = response.getWriter();
-            HashMap<String, String> isResponse = new HashMap<>();
-            isResponse.put("message","success");
-            String json = new Gson().toJson(isResponse);
-            out.println(json);
-            out.flush();
+        Extras extras = convertToExtraObject(request);
+        ExtrasService.storeExtrasService(extras);
+        PrintWriter out = response.getWriter();
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message","success");
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
     }
     private void updateExtraController(HttpServletRequest request,HttpServletResponse response) throws IOException {
-            Extras extra = convertToExtraObject(request);
-            ExtrasService.updateExtrasService(extra);
-            PrintWriter out = response.getWriter();
-            HashMap<String, String> isResponse = new HashMap<>();
-            isResponse.put("message","success");
-            String json = new Gson().toJson(isResponse);
-            out.println(json);
-            out.flush();
+        Extras extra = convertToExtraObject(request);
+        ExtrasService.updateExtrasService(extra);
+        PrintWriter out = response.getWriter();
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message","success");
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
 
     }
     private void destroyExtraController(HttpServletRequest request, HttpServletResponse response) throws IOException {
