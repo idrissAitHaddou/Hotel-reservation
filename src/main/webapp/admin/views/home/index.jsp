@@ -17,10 +17,16 @@
             type : "get",
             success :  function (response) {
                 const data = JSON.parse(response)
-                console.log("st success")
                 $("#allRoomsNumber").html(data.roomscount)
                 $("#allSuitesNumber").html(data.suitecount)
                 $("#allBookingsNumber").html(data.bookingscount)
+
+                $("#roomsCount").html(data.roomscount)
+                $("#suitesCount").html(data.suitecount)
+                $("#bookingsCount").html(data.bookingscount)
+
+                $("#fullname").html(data.firstname + " " + data.lastname)
+                $("#email").html(data.email)
             },
             error : function (error){
                 console.log("st error")
@@ -28,6 +34,44 @@
             }
         })
     }
+    // get staticcs of type rooms
+    getStaticsTypes()
+    function getStaticsTypes(){
+        $.ajax({
+            url : "/admin/get/statics",
+            type : "get",
+            success :  function (response) {
+                const data = JSON.parse(response)
+                // chart js for types
+                var yValues = [data.doubleCount, data.triplecount, data.singleCount, data.suitecount];
+                var barColors = ["#567DF4", "#FFC700", "#4CE364", "#22215B"];
+
+                // var barColors = ["#567DF4", "#22215B", "#4CE364", "#FFC700"];
+
+                new Chart("myChart", {
+                    type: "doughnut",
+                    data: {
+                        datasets: [
+                            {
+                                backgroundColor: barColors,
+                                data: yValues,
+                            },
+                        ],
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: "World Wide Wine Production 2018",
+                        },
+                    },
+                });
+            },
+            error : function (error){
+                console.log("st error")
+            }
+        })
+    }
+
 </script>
 </body>
 </html>

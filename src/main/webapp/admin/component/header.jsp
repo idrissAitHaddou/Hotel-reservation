@@ -44,7 +44,6 @@
 <div class="h-screen w-full bg-white relative flex">
     <div class="w-full flex flex-col">
         <div class="w-full h-20">
-
             <!-- Header -->
             <header class="h-full w-full flex items-center space-x-10">
                 <nav class="bg-white w-full flex relative justify-between items-center mx-auto px-4 h-20">
