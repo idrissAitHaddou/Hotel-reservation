@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 public class DAOManager extends Connection {
-    protected static ResultSet get(StringBuilder query){
+    protected static ResultSet get(StringBuilder query) {
         ResultSet resultSet  = null;
         try {
             if (connect() != null) {
@@ -13,10 +13,11 @@ public class DAOManager extends Connection {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+//        closeConnection();
         return resultSet;
     }
 
-    protected static Boolean post(StringBuilder query){
+    protected static Boolean post(StringBuilder query) {
         boolean isExecuted = false;
         try {
             if (connect() != null) {
@@ -28,6 +29,7 @@ public class DAOManager extends Connection {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+//        closeConnection();
         return isExecuted;
     }
 

@@ -102,5 +102,5 @@
 
 </aside>
 <!-- main -->
-<main class="w-full h-full relative bg-[#f2edf3]">
+<main class="w-full min-h-screen h-full relative bg-[#f2edf3]">
 
