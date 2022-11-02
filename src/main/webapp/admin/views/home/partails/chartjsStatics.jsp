@@ -13,22 +13,22 @@
                         </div>
                         <div class="profile-info">
                             <div class="post info-flex">
-                                <span class="info-color">Post</span>
-                                <span class="info-bold">23</span>
+                                <span class="info-color">Suites</span>
+                                <span id="suitesCount" class="info-bold"></span>
                             </div>
                             <div class="followers info-flex">
-                                <span class="info-color">Followers</span>
-                                <span class="info-bold">326</span>
+                                <span class="info-color">Rooms</span>
+                                <span id="roomsCount" class="info-bold"></span>
                             </div>
                             <div class="following info-flex">
-                                <span class="info-color">Following</span>
-                                <span class="info-bold">120</span>
+                                <span class="info-color">Bookings</span>
+                                <span id="bookingsCount" class="info-bold"></span>
                             </div>
                         </div>
                     </div>
                     <div class="profile-body">
-                        <span class="body-name">Neelesh Chaudhary</span>
-                        <span class="body-job">UI / UX Designer</span>
+                        <span id="fullname" class="body-name"></span>
+                        <span id="email" class="body-job"></span>
                     </div>
                     <div class="profile-footer">
                         <span class="profile-footer__bold">About</span>
@@ -43,11 +43,11 @@
         </div>
         <!-- left-end -->
         <!-- right-start -->
-        <div class="right-components mt-3">
+        <div class="right-components mt-3 md:w-3/5">
             <div class="chart">
                 <div class="container-chart">
                     <div class="left-part">
-                        <span class="ex-bold">Expertise</span>
+                        <span class="font-extrabold">Type Rooms</span>
                         <div class="lists">
                             <div class="list">
                                 <div class="list-image">
@@ -57,7 +57,7 @@
                                             alt="circle"
                                     />
                                 </div>
-                                <span>UI Design</span>
+                                <span>double</span>
                             </div>
                             <div class="list">
                                 <div class="list-image">
@@ -67,7 +67,7 @@
                                             alt="circle"
                                     />
                                 </div>
-                                <span>UX Research</span>
+                                <span>triple</span>
                             </div>
                             <div class="list">
                                 <div class="list-image">
@@ -77,7 +77,7 @@
                                             alt="circle"
                                     />
                                 </div>
-                                <span>Design Interaction</span>
+                                <span>individuelle</span>
                             </div>
                             <div class="list">
                                 <div class="list-image">
@@ -87,7 +87,7 @@
                                             alt="circle"
                                     />
                                 </div>
-                                <span>Wireframing</span>
+                                <span>suite</span>
                             </div>
                         </div>
                     </div>

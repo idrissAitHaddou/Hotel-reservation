@@ -29,6 +29,14 @@ public class UserRepository extends DAOManager {
         return get(query);
     }
 
+    static ResultSet login(User user) throws SQLException {
+        StringBuilder query = new StringBuilder("SELECT * FROM admins");
+        query.append(" WHERE email like ").append("'").append(user.email).append("'");
+        query.append(" and password like ").append("'").append(user.password).append("'");
+        query.append(";");
+        return get(query);
+    }
+
     static ResultSet checkPassword(User user) throws SQLException {
         StringBuilder query = new StringBuilder("SELECT * FROM admins");
         query.append(" WHERE password like ").append("'").append(user.password).append("'");

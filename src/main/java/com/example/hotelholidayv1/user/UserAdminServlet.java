@@ -16,9 +16,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@WebServlet({"/admin/update", "/admin/get", "/admin/check/password", "/admin/update/password", "/admin/get/statics"})
+@WebServlet({"/admin/validate/login", "/admin/update", "/admin/get", "/admin/check/password", "/admin/update/password", "/admin/get/statics"})
 @MultipartConfig
 public class UserAdminServlet extends HttpServlet {
+    private String baseUrl = "http://localhost:8080";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -45,12 +46,26 @@ public class UserAdminServlet extends HttpServlet {
             case "/admin/check/password": checkPassowrdUserController(request, response); break;
             case "/admin/update/password": updatePasswordController(request, response); break;
             case "/admin/get/statics": getAllStaticsController(request, response); break;
+            case "/admin/validate/login": loginController(request, response); break;
         }
     }
 
     public User convertToUserObject(HttpServletRequest request) {
         return new User(request.getParameter("firstname"), request.getParameter("lastname"),
                 request.getParameter("email"), request.getParameter("password"));
+    }
+
+    public void loginController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        User user = convertToUserObject(request);
+        String message = "error";
+        if(UserService.loginService(user)) { message = "success"; response.sendRedirect(this.baseUrl + "/admin/dashboard");return;}
+        System.out.println(message);
+        PrintWriter out = response.getWriter();
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message",message);
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
     }
 
     public void getAllUserController(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -77,7 +92,6 @@ public class UserAdminServlet extends HttpServlet {
         User user = convertToUserObject(request);
         String message = "error";
         if(UserService.checkPassowrdUserService(user)) { message = "success"; }
-        System.out.println(message);
         PrintWriter out = response.getWriter();
         HashMap<String, String> isResponse = new HashMap<>();
         isResponse.put("message",message);
@@ -98,7 +112,7 @@ public class UserAdminServlet extends HttpServlet {
     }
 
     public void getAllStaticsController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
-        HashMap<String, Integer> rsStatics = UserService.getAllStaticsUserService();
+        HashMap<String, String> rsStatics = UserService.getAllStaticsUserService();
         PrintWriter out = response.getWriter();
         String json = new Gson().toJson(rsStatics);
         out.println(json);

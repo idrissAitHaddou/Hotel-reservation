@@ -5,12 +5,16 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/admin", "/admin/dashboard", "/admin/rooms", "/admin/profile", "/admin/booking", "/admin/rooms-rates", "/admin/promotion", "/admin/extras"})
+@WebServlet({"/admin/login", "/admin/dashboard", "/admin/rooms", "/admin/profile", "/admin/booking", "/admin/rooms-rates", "/admin/promotion", "/admin/extras"})
 public class RouterAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath()!=null?request.getServletPath():"";
         switch(path) {
+            case "/admin/login":
+                RequestDispatcher login = request.getRequestDispatcher("../admin/views/login/index.jsp");
+                login.include( request, response );
+                break;
             case "/admin/dashboard":
                 view(request, response, "../admin/views/dashboard/index.jsp");
                 break;
