@@ -162,7 +162,7 @@
                     success : function (response){
                         const res = JSON.parse(response);
                         $("#loadingValidateLogin").hide()
-                        res.message == "error" ? toastError("Password or Email not invalid !!!", "toast-success") : ''
+                        res.message == "success" ? window.location = "http://localhost:8080/admin/dashboard" : toastError("Password or Email not invalid !!!", "toast-success")
                     },
                     error : function (error){
                         $("#loadingValidateLogin").hide()

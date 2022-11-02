@@ -5,15 +5,27 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet({"/admin/login", "/admin/dashboard", "/admin/rooms", "/admin/profile", "/admin/booking", "/admin/rooms-rates", "/admin/promotion", "/admin/extras"})
+@WebServlet({"/admin/logout", "/admin/login", "/admin/dashboard", "/admin/rooms", "/admin/profile", "/admin/booking", "/admin/rooms-rates", "/admin/promotion", "/admin/extras"})
 public class RouterAdminServlet extends HttpServlet {
+    private HttpSession checkSession;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath()!=null?request.getServletPath():"";
+        checkSession = request.getSession();
         switch(path) {
+            case "/admin/logout":
+                HttpSession removeSession = request.getSession();
+                removeSession.removeAttribute("sessionsAdmin");
+                response.sendRedirect("/admin/login");
+                break;
             case "/admin/login":
-                RequestDispatcher login = request.getRequestDispatcher("../admin/views/login/index.jsp");
-                login.include( request, response );
+                HttpSession session = request.getSession();
+                if(session.getAttribute("sessionsAdmin") == null) {
+                    RequestDispatcher login = request.getRequestDispatcher("../admin/views/login/index.jsp");
+                    login.include( request, response );
+                    return;
+                }
+                response.sendRedirect("/admin/dashboard");
                 break;
             case "/admin/dashboard":
                 view(request, response, "../admin/views/dashboard/index.jsp");
@@ -42,14 +54,20 @@ public class RouterAdminServlet extends HttpServlet {
     }
 
     public void view(HttpServletRequest request, HttpServletResponse response, String pathView) throws ServletException, IOException  {
-        RequestDispatcher header = request.getRequestDispatcher("../admin/component/header.jsp");
-        header.include( request, response );
-        RequestDispatcher sidebar = request.getRequestDispatcher("../admin/component/sidebar.jsp");
-        sidebar.include( request, response );
-        RequestDispatcher main = request.getRequestDispatcher(pathView);
-        main.include( request, response );
-        RequestDispatcher footer = request.getRequestDispatcher("../admin/component/footer.jsp");
-        footer.include( request, response );
+        if(checkSession.getAttribute("sessionsAdmin") != null) {
+            RequestDispatcher header = request.getRequestDispatcher("../admin/component/header.jsp");
+            header.include( request, response );
+            RequestDispatcher sidebar = request.getRequestDispatcher("../admin/component/sidebar.jsp");
+            sidebar.include( request, response );
+            RequestDispatcher main = request.getRequestDispatcher(pathView);
+            main.include( request, response );
+            RequestDispatcher footer = request.getRequestDispatcher("../admin/component/footer.jsp");
+            footer.include( request, response );
+            return;
+        }
+        response.sendRedirect("/admin/login");
+        RequestDispatcher login = request.getRequestDispatcher("../admin/views/login/index.jsp");
+        login.include( request, response );
     }
 
 }
