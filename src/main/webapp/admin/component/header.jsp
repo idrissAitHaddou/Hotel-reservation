@@ -145,11 +145,11 @@
                                 <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
                             </svg>
                         </button>
-                        <button type="button" class="inline-flex items-center relative px-2">
+                        <a href="/admin/logout" type="button" class="inline-flex items-center relative px-2">
                             <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path fill="none" stroke="#9C9FA6" stroke-width="2" d="M16,4 C19.3637732,5.43018182 22,8.98935065 22,13 C22,18.6008831 17.5273457,23 12,23 C6.47265429,23 2,18.6008831 2,13 C2,8.98935065 4.63622679,5.43018182 8,4 M12,1 L12,11"/>
                             </svg>
-                        </button>
+                        </a>
                     </div>
                     <!-- end login -->
                 </nav>

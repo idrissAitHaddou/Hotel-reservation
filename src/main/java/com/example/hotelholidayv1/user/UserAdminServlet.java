@@ -58,8 +58,11 @@ public class UserAdminServlet extends HttpServlet {
     public void loginController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         User user = convertToUserObject(request);
         String message = "error";
-        if(UserService.loginService(user)) { message = "success"; response.sendRedirect(this.baseUrl + "/admin/dashboard");return;}
-        System.out.println(message);
+        if(UserService.loginService(user)) {
+            message = "success";
+            HttpSession sessionAdmin = request.getSession();
+            sessionAdmin.setAttribute("sessionsAdmin", user.email);
+        }
         PrintWriter out = response.getWriter();
         HashMap<String, String> isResponse = new HashMap<>();
         isResponse.put("message",message);
