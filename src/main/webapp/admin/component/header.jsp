@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% HttpSession isSession = request.getSession(); %>
+<% String email = isSession.getAttribute("sessionsAdmin").toString(); %>
 <html>
 <head>
     <title>Hotel</title>
@@ -73,7 +75,7 @@
                                     <img class="w-8 h-8 rounded-full mr-6" src="/assets/images/profileImg.svg" alt="">
                                     <span class="top-0 left-7 absolute  w-2.5 h-2.5 bg-green-400 border-1 border-white dark:border-gray-800 rounded-full"></span>
                                 </div>
-                                idriss@gmail.com
+                                <span class="text-xs"><%= email %></span>
                             </button>
                         </div>
                         <!-- Dropdown profile -->

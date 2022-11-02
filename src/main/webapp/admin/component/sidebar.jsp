@@ -1,5 +1,7 @@
 
 <% String realPath = request.getServletPath()!=null?request.getServletPath():""; %>
+<% HttpSession isSession = request.getSession(); %>
+<% String email = isSession.getAttribute("sessionsAdmin").toString(); %>
 <!-- Sidebar -->
 <aside class="aside-bar h-full w-56 flex-col space-y-10 items-center justify-start relative bg-white text-white">
     <div class="hidden lg:flex lg:flex-shrink-0">
@@ -10,12 +12,12 @@
                     <nav class="mt-1 flex-1" aria-label="Sidebar">
                         <div class="px-2">
                             <div class="flex items-center text-gray-600 mb-4">
-                               <a href="/admin/profile"><button type="button" class="inline-flex justify-center items-center p-2 text-sm rounded cursor-pointer">
-                                    <div class="relative">
+                               <a href="/admin/profile"><button type="button" class="inline-flex flex-col justify-center items-left p-2 text-sm rounded cursor-pointer">
+                                    <div class="relative mb-2">
                                         <img class="w-8 h-8 rounded-full mr-6" src="/assets/images/profileImg.svg" alt="">
                                         <span class="top-0 left-7 absolute  w-2.5 h-2.5 bg-green-400 border-1 border-white dark:border-gray-800 rounded-full"></span>
                                     </div>
-                                    idriss@gmail.com
+                                    <span class="text-xs"><%= email %></span>
                                 </button></a>
                             </div>
                             <ul>
