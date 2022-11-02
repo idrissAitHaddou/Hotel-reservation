@@ -64,7 +64,7 @@
           <div id="toast-success-password" class="absolute z-[999999] right-2 -top-2 flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 rounded-lg shadow" role="alert"></div>
           <div class="mb-6 flex md:flex-row flex-col justify-between">
             <div class="w-full">
-              <label for="old-password" class="block mb-2 text-sm font-medium text-gray-700">Old password</label>
+              <label for="old-password" class="block mb-2 text-sm font-medium text-gray-700">Old password ( password is : 123 )</label>
               <input type="text" id="old-password" class="w-full bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-700 rounded-lg">
             </div>
           </div>
@@ -100,30 +100,34 @@
   $("#loadingEdit").hide()
   $("#loadingEditPassowrd").hide()
   // validate password from database
-  function validatePassword(oldPassword) {
+  function validatePassword() {
     let oldPasswordValid = $("#old-password").val()
     let newPasswordValid = $("#newPassword").val()
     let newPasswordConfirmeValid = $("#newPasswordConfirme").val()
     let validateValue = validateAdminInfo(oldPasswordValid, newPasswordValid, newPasswordConfirmeValid);
     if(validateValue == 1) {
-      const formCheckPassword = new FormData();
-      formCheckPassword.append("password", oldPassword)
-      $.ajax({
-        url : "/admin/check/password",
-        type: "post",
-        data: formCheckPassword,
-        processData: false,
-        contentType: false,
-        success : function (response){
-          const res = JSON.parse(response);
-          console.log(res.message)
-          res.message == "success" ? chnagePassword() : toastError("The password invalid !!!", "toast-success-password")
-        },
-        error : function (error){
-          toastError("Connection failed !!!", "toast-success-password")
-          $("#loadingEditPassowrd").hide()
-        }
-      })
+      if(newPasswordValid == newPasswordConfirmeValid) {
+        const formCheckPassword = new FormData();
+        formCheckPassword.append("password", oldPasswordValid)
+        $.ajax({
+          url : "/admin/check/password",
+          type: "post",
+          data: formCheckPassword,
+          processData: false,
+          contentType: false,
+          success : function (response){
+            const res = JSON.parse(response);
+            res.message == "success" ? chnagePassword() : toastError("The password invalid !!!", "toast-success-password")
+          },
+          error : function (error){
+            toastError("Connection failed !!!", "toast-success-password")
+            $("#loadingEditPassowrd").hide()
+          }
+        })
+      }else {
+        $("#loadingEditPassowrd").hide()
+        toastError("Password not confirmed !!!!", "toast-success-password")
+      }
     } else {
       $("#loadingEditPassowrd").hide()
       toastError("All informations required.", "toast-success-password")
@@ -135,33 +139,30 @@
     let oldPassword = $("#old-password").val()
     let newPassword = $("#newPassword").val()
     let newPasswordConfirme = $("#newPasswordConfirme").val()
-      // if(message == "success") {
-      //   formData.append("password", newPassword)
-        toastSuccess("Password updated successfully.", "toast-success-password")
-        // $("#loadingEdit").show()
-        // $.ajax({
-        //   url : "/admin/update",
-        //   type: "post",
-        //   data: formData,
-        //   processData: false,
-        //   contentType: false,
-        //   success : function (response){
-        //     getAdmin()
-        //     $("#loadingEdit").hide()
-        //     const res = JSON.parse(response);
-        //     if(res.message == "success") {
-        //       $("#spFirstname").html("Firstname : " + firstname)
-        //       $("#spLastname").html("Lastname : " + lastname)
-        //       $("#spEmail").html("Email : " + email)
-        //       toastSuccess("Info updated successfully.", "toast-success-password")
-        //     }else {
-        //       toastError("Info not updated !!!", "toast-success-password")
-        //     }
-        //   },
-        //   error : function (error){
-        //     toastError("Connection failed !!!", "toast-success-password")
-        //   }
-        // })
+        formData.append("password", newPassword)
+        $("#loadingEditPassowrd").show()
+        $.ajax({
+          url : "/admin/update/password",
+          type: "post",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success : function (response){
+            getAdmin()
+            $("#loadingEditPassowrd").hide()
+            const res = JSON.parse(response);
+            if( res.message == "success") {
+              $("#old-password").val("")
+              $("#newPassword").val("")
+              $("#newPasswordConfirme").val("")
+            }
+            res.message == "success" ? toastSuccess("Password updated successfully.", "toast-success-password")
+                                     :  toastError("Password not updated !!!", "toast-success-password")
+          },
+          error : function (error){
+            toastError("Connection failed !!!", "toast-success-password")
+          }
+        })
   }
   // validate edit admin info
   function validateAdminInfo(firstname, lastname, email) {
@@ -229,8 +230,6 @@
         toastError("Connection failed !!!", "toast-success")
       }
     })
-
-
   }
   function toastSuccess(message, id) {
     let   element ='<div class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-100 rounded-lg">'

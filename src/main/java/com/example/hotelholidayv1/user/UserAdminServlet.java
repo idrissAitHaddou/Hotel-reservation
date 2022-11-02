@@ -12,10 +12,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@WebServlet({"/admin/store", "/admin/update", "/admin/get", "/admin/delete", "/admin/check/password"})
+@WebServlet({"/admin/update", "/admin/get", "/admin/check/password", "/admin/update/password", "/admin/get/statics"})
 @MultipartConfig
 public class UserAdminServlet extends HttpServlet {
     @Override
@@ -42,6 +43,8 @@ public class UserAdminServlet extends HttpServlet {
             case "/admin/get": getAllUserController(request, response); break;
             case "/admin/update": updateUserController(request, response); break;
             case "/admin/check/password": checkPassowrdUserController(request, response); break;
+            case "/admin/update/password": updatePasswordController(request, response); break;
+            case "/admin/get/statics": getAllStaticsController(request, response); break;
         }
     }
 
@@ -74,6 +77,7 @@ public class UserAdminServlet extends HttpServlet {
         User user = convertToUserObject(request);
         String message = "error";
         if(UserService.checkPassowrdUserService(user)) { message = "success"; }
+        System.out.println(message);
         PrintWriter out = response.getWriter();
         HashMap<String, String> isResponse = new HashMap<>();
         isResponse.put("message",message);
@@ -82,4 +86,22 @@ public class UserAdminServlet extends HttpServlet {
         out.flush();
     }
 
+    public void updatePasswordController(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        User user = convertToUserObject(request);
+        UserService.updatePasswordService(user);
+        PrintWriter out = response.getWriter();
+        HashMap<String, String> isResponse = new HashMap<>();
+        isResponse.put("message","success");
+        String json = new Gson().toJson(isResponse);
+        out.println(json);
+        out.flush();
+    }
+
+    public void getAllStaticsController(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        HashMap<String, Integer> rsStatics = UserService.getAllStaticsUserService();
+        PrintWriter out = response.getWriter();
+        String json = new Gson().toJson(rsStatics);
+        out.println(json);
+        out.flush();
+    }
 }

@@ -18,6 +18,17 @@ public class UserRepository extends DAOManager {
         return get(query);
     }
 
+    static ResultSet allStatics(String columnName, String table, String condition) throws SQLException {
+        StringBuilder query = new StringBuilder("select count(*) as");
+        query.append(" ").append(columnName);
+        query.append(" from ").append(table);
+        if(!condition.equals("")) {
+            query.append(" where  ").append(condition);
+        }
+        query.append(";");
+        return get(query);
+    }
+
     static ResultSet checkPassword(User user) throws SQLException {
         StringBuilder query = new StringBuilder("SELECT * FROM admins");
         query.append(" WHERE password like ").append("'").append(user.password).append("'");
@@ -38,6 +49,13 @@ public class UserRepository extends DAOManager {
         query.append(" firstname = ").append("'").append(user.firstname).append("'");
         query.append(" ,lastname = ").append("'").append(user.lastname).append("'");
         query.append(" ,email = ").append("'").append(user.email).append("'");
+        return post(query);
+    }
+
+    static boolean updatePassword(User user){
+        StringBuilder query = new StringBuilder("UPDATE admins SET");
+        query.append(" password = ").append("'").append(user.password).append("'");
+        query.append(";");
         return post(query);
     }
 
