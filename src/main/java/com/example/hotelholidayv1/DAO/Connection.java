@@ -3,7 +3,7 @@ package com.example.hotelholidayv1.DAO;
 import java.sql.*;
 
 public class Connection {
-    public static Statement statement;
+    public static java.sql.Connection connection;
 
     private static final String url = "jdbc:postgresql://localhost:5433/hotel-holiday";
     private static final String user = "postgres";
@@ -12,7 +12,7 @@ public class Connection {
     public static Statement connect(){
         try{
             Class.forName("org.postgresql.Driver");
-            java.sql.Connection connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(url, user, password);
             return connection.createStatement();
         }catch (SQLException ex){
             System.out.println(ex.getMessage());
@@ -23,5 +23,13 @@ public class Connection {
         return null;
     }
 
+    public static void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 
 }
