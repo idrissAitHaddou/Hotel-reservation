@@ -117,6 +117,7 @@ public class RoomRepository extends DAOManager {
         query.append(";");
         return get(query);
     }
+
     static ResultSet allRates(int roomId){
         StringBuilder query = new StringBuilder("SELECT * FROM room_rates");
         query.append(" WHERE room_id = ").append(roomId);
@@ -125,8 +126,9 @@ public class RoomRepository extends DAOManager {
     }
 
     static ResultSet allImagesWithId(int imageId){
+
         StringBuilder query = new StringBuilder("SELECT * FROM images");
-        query.append(" WHERE id_image = ").append(imageId);
+        query.append(" WHERE id_image = ").append(id);
         query.append(";");
         return get(query);
     }

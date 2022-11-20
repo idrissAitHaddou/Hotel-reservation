@@ -9,11 +9,37 @@ import java.util.ArrayList;
 
 public class UserRepository extends DAOManager {
     // * get all users
-    ResultSet all(int id) throws SQLException {
+    static ResultSet all(int id) throws SQLException {
         StringBuilder query = new StringBuilder("SELECT * FROM admins ");
-        if(id != 0){
+        if(id != -1){
             query.append(" WHERE id_admin = ").append(id);
         }
+        query.append(";");
+        return get(query);
+    }
+
+    static ResultSet allStatics(String columnName, String table, String condition) throws SQLException {
+        StringBuilder query = new StringBuilder("select count(*) as");
+        query.append(" ").append(columnName);
+        query.append(" from ").append(table);
+        if(!condition.equals("")) {
+            query.append(" where  ").append(condition);
+        }
+        query.append(";");
+        return get(query);
+    }
+
+    static ResultSet login(User user) throws SQLException {
+        StringBuilder query = new StringBuilder("SELECT * FROM admins");
+        query.append(" WHERE email like ").append("'").append(user.email).append("'");
+        query.append(" and password like ").append("'").append(user.password).append("'");
+        query.append(";");
+        return get(query);
+    }
+
+    static ResultSet checkPassword(User user) throws SQLException {
+        StringBuilder query = new StringBuilder("SELECT * FROM admins");
+        query.append(" WHERE password like ").append("'").append(user.password).append("'");
         query.append(";");
         return get(query);
     }
@@ -26,13 +52,18 @@ public class UserRepository extends DAOManager {
         query.append(");");
         return post(query);
     }
-    boolean update(User user,int id){
+    static boolean update(User user){
         StringBuilder query = new StringBuilder("UPDATE admins SET");
-        query.append("  = ").append("'").append(user.firstname).append("'");
-        query.append(" lastname = ").append("'").append(user.lastname).append("'");
-        query.append(" email = ").append("'").append(user.email).append("'");
+        query.append(" firstname = ").append("'").append(user.firstname).append("'");
+        query.append(" ,lastname = ").append("'").append(user.lastname).append("'");
+        query.append(" ,email = ").append("'").append(user.email).append("'");
+        return post(query);
+    }
+
+    static boolean updatePassword(User user){
+        StringBuilder query = new StringBuilder("UPDATE admins SET");
         query.append(" password = ").append("'").append(user.password).append("'");
-        query.append(" WHERE id_admin = ").append(id);
+        query.append(";");
         return post(query);
     }
 
