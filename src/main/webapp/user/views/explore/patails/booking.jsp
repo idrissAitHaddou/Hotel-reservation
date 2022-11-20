@@ -103,13 +103,13 @@
             </div>
         </div>
 
-        <main class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            <div class="border-b border-gray-200 pb-10">
-                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">Booking Room</h1>
-                <p class="mt-4 text-base text-gray-500">Checkout out the bestest rooms!</p>
+            <div class="bg-[#F5F3F0] pt-20 px-16 pb-6">
+                <h1 class="text-2xl font-semibold tracking-tight text-gray-900">Booking Room</h1>
+                <p class="mt-2 text-base text-gray-500">Checkout out the bestest rooms!</p>
             </div>
+        <main class="max-w-2xl mx-auto py-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
 
-            <div class="pt-12 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
+            <div class="pt-2 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
                 <aside>
                     <h2 class="sr-only">Filters</h2>
 

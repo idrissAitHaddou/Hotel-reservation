@@ -5,13 +5,13 @@
 
       <div id="indicators-carousel" class="relative pt-6 bg-[#F5F3F0]" data-carousel="">
         <!-- Carousel wrapper -->
-        <div class="relative h-56 overflow-hidden rounded-lg mt-1 md:h-96">
+        <div id="image-slider" class="relative h-56 overflow-hidden rounded-lg mt-1 md:h-96">
           <!-- Item 1 -->
-            <div class="duration-700 ease-in-out absolute inset-0  transition-all transform translate-x-0 z-20" data-carousel-item="active">
-              <img src="/assets/images/rooms/room1.jpg" class="absolute block md:w-2/3 w-full md:px-12 px-6 rounded -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-            </div>
+              <div class="duration-700 ease-in-out absolute inset-0  transition-all transform translate-x-0 z-20" data-carousel-item="">
+                <img src="/assets/images/rooms/room1.jpg" class="absolute block md:w-2/3 w-full md:px-12 px-6 rounded -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+              </div>
             <!-- Item 2 -->
-            <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10" data-carousel-item="">
+            <div class="duration-700 ease-in-out absolute inset-0 transition-all transform translate-x-full z-10" data-carousel-item="active">
               <img src="/assets/images/rooms/room2.jpg" class="absolute block md:w-2/3 w-full md:px-12 px-6 rounded -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
             </div>
             <!-- Item 3 -->
@@ -28,7 +28,7 @@
             </div>
         </div>
         <!-- Slider indicators -->
-        <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+        <div id="button-slider" class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
           <button type="button" class="w-3 h-3 rounded-full bg-white dark:bg-gray-800" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
           <button type="button" class="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
           <button type="button" class="w-3 h-3 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>

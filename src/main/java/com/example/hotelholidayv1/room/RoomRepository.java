@@ -19,7 +19,7 @@ public class RoomRepository extends DAOManager {
     static ResultSet allWithImagesAndRates(String startDate,String endDate){
         StringBuilder query = new StringBuilder("SELECT * FROM rooms inner join room_rates rr on rooms.id_room = rr.room_id ");
         if(startDate != null && endDate != null ){
-            query.append(" WHERE start_date>= ").append("'").append(startDate).append("'").append( " and end_date <= ").append("'").append(endDate).append("'");
+            query.append("WHERE rr.start_date <= '"+startDate+"' and rr.end_date >='"+startDate+"'  or rr.end_date >= '"+startDate+"' and rr.end_date <= '"+ endDate +"' or rr.start_date >='"+startDate+"' and rr.start_date <= '"+ endDate +"' or rr.start_date <= '"+ endDate +"' and rr.end_date >= '"+ endDate +"'");
         }
         query.append(";");
         return get(query);
@@ -90,6 +90,7 @@ public class RoomRepository extends DAOManager {
         return false;
     }
 
+
     public static boolean updateOne(int room_id, int promo_id){
         StringBuilder query = new StringBuilder("UPDATE rooms SET ");
         query.append("promo_id = ").append(promo_id);
@@ -116,7 +117,16 @@ public class RoomRepository extends DAOManager {
         query.append(";");
         return get(query);
     }
-    static ResultSet allImagesWithId(int id){
+
+    static ResultSet allRates(int roomId){
+        StringBuilder query = new StringBuilder("SELECT * FROM room_rates");
+        query.append(" WHERE room_id = ").append(roomId);
+        query.append(";");
+        return get(query);
+    }
+
+    static ResultSet allImagesWithId(int imageId){
+
         StringBuilder query = new StringBuilder("SELECT * FROM images");
         query.append(" WHERE id_image = ").append(id);
         query.append(";");

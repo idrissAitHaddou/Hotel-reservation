@@ -9,9 +9,11 @@ import jakarta.servlet.annotation.*;
 import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/details","/admin/room/one/details","/admin/room/one", "/admin/room/delete", "/admin/room/delete/image"})
 @MultipartConfig
@@ -60,7 +62,7 @@ public class RoomServlet extends HttpServlet {
                 request.getParameter("promo_id"), request.getParameter("type_room"));
     }
 
-    private void getAllRoomController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+    private void getAllRoomController(HttpServletRequest request, HttpServletResponse response) throws  IOException, SQLException {
         ResultSet rsRooms = RoomService.getAllRoomService(-1);
         PrintWriter out = response.getWriter();
         List<HashMap<String,Object>> rooms = DataConverter.toList(rsRooms);
@@ -71,7 +73,7 @@ public class RoomServlet extends HttpServlet {
     private void getAllRoomWithDetailsController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String start_date = request.getParameter("start_date") != null ? request.getParameter("start_date"):null;
         String end_date = request.getParameter("end_date") != null ? request.getParameter("end_date"):null;
-        ResultSet rsRooms = RoomService.getAllRoomWithDetailsService(start_date,end_date);
+        ResultSet rsRooms = RoomService.getAllRoomService(-1);
         PrintWriter out = response.getWriter();
         List<HashMap<String,Object>> rooms = DataConverter.toList(rsRooms);
         for (HashMap<String,Object> room: rooms) {
@@ -80,6 +82,14 @@ public class RoomServlet extends HttpServlet {
             ResultSet rsImages = RoomService.getAllImageService(idRoom);
             List<HashMap<String,Object>> images = DataConverter.toList(rsImages);
             room.put("images",images);
+            ResultSet rsRate = RoomService.getAllRatesRoomService(idRoom);
+            List<HashMap<String,Object>> rates = DataConverter.toList(rsRate);
+            double total=0;
+            for (HashMap<String,Object> rate: rates) {
+                total += Double.parseDouble(String.valueOf(rate.get("rate")));
+            }
+            room.put("avg",total/rates.size());
+            room.put("rates",rates);
         }
 
         String json = new Gson().toJson(rooms);
@@ -87,7 +97,7 @@ public class RoomServlet extends HttpServlet {
         out.flush();
     }
     private void getOneRoomWithDetailsController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        System.out.println(request.getParameter("id"));
+        System.out.println(request.getParameter("id")+"hello");
         int idRoom = request.getParameter("id") != null ? DataConverter.parseInt(request.getParameter("id")):-1;
         ResultSet rsRooms = RoomService.getOneRoomWithDetailsService(idRoom);
         PrintWriter out = response.getWriter();

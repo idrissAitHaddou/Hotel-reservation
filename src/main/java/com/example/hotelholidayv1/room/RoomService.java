@@ -29,6 +29,10 @@ public class RoomService {
     public static ResultSet getAllImageService(int idRoom){
         return RoomRepository.allImages(idRoom);
     }
+    public static ResultSet getAllRatesRoomService(int idRoom){
+        return RoomRepository.allRates(idRoom);
+    }
+
     public static void storeRoomService(HttpServletRequest request, Room room,String uploadPath) throws SQLException {
         List<String> images = new ArrayList<>();
         try {
