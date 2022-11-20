@@ -74,7 +74,7 @@
             </ul>
         </div>
     </div>
-    <div class="w-1/3 ">
+    <form id="formCheckAvailability" method="post" onsubmit="return formCheckAvailability()" class="w-1/3 ">
         <div class="ml-4 border flex flex-col h-fit px-6 py-3 gap-8">
         <h2 class="text-xl font-semibold text-800">Book Room</h2>
         <div class="flex flex-col">
@@ -85,17 +85,17 @@
             <label for="end-date">Check-out</label>
             <input id="end-date" type="date" name="end-date" class="block w-full pr-10 border-[#F97316] text placeholder-[#F97316] focus:outline-none focus:ring-[#F97316] focus:border-[#F97316] sm:text-sm rounded-md"/>
         </div>
-        <button type="button" class="inline-flex items-center justify-center px-2 py-2 border border-[#F97316] text-sm text-[#F97316] font-medium rounded-md shadow-sm bg-white hover:text-white hover:bg-[#F97316]" >Check Availability</button>
+        <button type="submit" class="inline-flex items-center justify-center px-2 py-2 border border-[#F97316] text-sm text-[#F97316] font-medium rounded-md shadow-sm bg-white hover:text-white hover:bg-[#F97316]" >Check Availability</button>
         </div>
         <div class=" my-4 ml-4">
-            <img src="/assets/images/sea.jpg" class="max-w-full h-auto" alt="sea"/>
+            <img src="${pageContext.request.contextPath}/assets/images/sea.jpg" class="max-w-full h-auto" alt="sea"/>
         </div>
-    </div>
+    </form>
 
 </div>
 <jsp:include page="../../component/footer.jsp"/>
 
-<script type="text/javascript" src="/user/js/roomApi.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/user/js/detail.js"></script>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </body>
 
