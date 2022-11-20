@@ -7,6 +7,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/admin/views/rooms/partails/edit.jsp" value="file://$PROJECT_DIR$/src/main/webapp/admin/views/rooms/partails" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/user/views/booking/patails/booking.jsp" value="file://$PROJECT_DIR$/src/main/webapp/user/views/booking/patails" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/user/views/checkout/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp/user/views/checkout" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/user/views/explore/patails/booking.jsp" value="file://$PROJECT_DIR$/src/main/webapp/user/views/explore/patails" />
       </map>
     </option>
   </component>

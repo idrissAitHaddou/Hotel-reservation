@@ -95,6 +95,7 @@
 </div>
 <jsp:include page="../../component/footer.jsp"/>
 
+<script type="text/javascript" src="/user/js/roomApi.js"></script>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </body>
 

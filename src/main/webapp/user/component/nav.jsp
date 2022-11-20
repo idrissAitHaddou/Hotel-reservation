@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="bg-white fixed z-50 w-full shadow-md">
-    <div class="lg:w-6/12 md:w-8/12 w-full flex justify-center my-1 mx-auto px-2 sm:px-6 lg:px-8">
+    <div class=" lg:w-11/12 w-full flex justify-center my-1 mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative w-full">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <!-- Mobile menu button -->
@@ -16,9 +16,9 @@
                 </button>
             </div>
             <div class="flex items-center w-full justify-between">
-                <div class="flex">
+                <a href="${pageContext.request.contextPath}/" class="flex">
                     <img class="block h-12 w-auto" src="/assets/images/logo/HOTEL.png" alt="Hotel Holiday">
-                </div>
+                </a>
                 <div class="sm:ml-6 sm:flex sm:space-x-10">
                     <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
                     <c:choose>
@@ -29,15 +29,6 @@
                             <a href="/" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium"> Home </a>
                         </c:otherwise>
                     </c:choose>
-                    <c:choose>
-                        <c:when test='${param.current.equals("rooms")}'>
-                            <a href="/rooms-suites" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium"> Rooms & Suite </a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/rooms-suites" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium"> Rooms & Suite </a>
-                        </c:otherwise>
-                    </c:choose>
-
                     <c:choose>
                         <c:when test='${param.current.equals("explore")}'>
                             <a href="/explore" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-base font-medium"> Explore </a>
