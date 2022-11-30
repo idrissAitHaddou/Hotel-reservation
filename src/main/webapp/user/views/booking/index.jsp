@@ -29,11 +29,12 @@
 <body>
 <jsp:include page="../../component/nav.jsp"/>
 <jsp:include page="patails/step.jsp"/>
-<div class="flex flex-col md:flex-row md:w-8/12 w-full px-6 mx-auto mt-16">
+<div id="toast-success" class="absolute z-[999999] right-2 top-20 flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 rounded-lg " role="alert"></div>
+<form id="check-availability" onsubmit="return submitBookingForm()" class="flex flex-col md:flex-row md:w-8/12 w-full px-6 mx-auto mt-16">
   <div class="md:w-2/3 w-full">
     <div class="">
       <h2 class="text-xl text-800 my-4" >Additional service</h2>
-      <ul class="space-y-4">
+      <ul id="extra-data" class="space-y-4">
         <li>
           <label for="extra-breakfast" class="flex justify-between items-center text-sm p-2 rounded text-[#8E8E8E] border hover:bg-green-100">
             <span class="">
@@ -160,7 +161,7 @@
       <li>
         <label for="time-10-11" class="flex justify-between items-center text-sm p-2 rounded text-[#8E8E8E] border hover:bg-green-100">
             <span class="">
-              <input id="time-10-11" type="radio" name="time" class="rounded-full text-green-600 border-green-600 border-green-600 focus:outline-none focus:border-none focus:ring-0 ">
+              <input id="time-10-11" type="radio" onchange="timeCheckIn(this)" checked value="10:00-11:00" name="time" class="rounded-full text-green-600 border-green-600 border-green-600 focus:outline-none focus:border-none focus:ring-0 ">
               <label  for="time-10-11">
                 10:00-11:00
               </label>
@@ -170,7 +171,7 @@
       <li>
         <label for="time-14-15" class="flex justify-between items-center text-sm p-2 rounded text-[#8E8E8E] border hover:bg-green-100">
             <span class="">
-              <input id="time-14-15" type="radio" name="time" class="rounded-full text-green-600 border-green-600 border-green-600 focus:outline-none focus:border-none focus:ring-0 ">
+              <input id="time-14-15" type="radio" onchange="timeCheckIn(this)" name="time" value="14:00-15:00" class="rounded-full text-green-600 border-green-600 border-green-600 focus:outline-none focus:border-none focus:ring-0 ">
               <label  for="time-14-15">
                 14:00-15:00
               </label>
@@ -180,7 +181,7 @@
       <li>
         <label for="time-17-18" class="flex justify-between items-center text-sm p-2 rounded text-[#8E8E8E] border hover:bg-green-100">
             <span class="">
-              <input id="time-17-18" type="radio" name="time" class="rounded-full text-green-600 border-green-600 border-green-600 focus:outline-none focus:border-none focus:ring-0 ">
+              <input id="time-17-18" type="radio" onchange="timeCheckIn(this)" value="17:00-18:00" name="time" class="rounded-full text-green-600 border-green-600 border-green-600 focus:outline-none focus:border-none focus:ring-0 ">
               <label  for="time-17-18">
                 17:00-18:00
               </label>
@@ -190,7 +191,7 @@
       <li>
         <label for="time-20-21" class="flex justify-between items-center text-sm p-2 rounded text-[#8E8E8E] border hover:bg-green-100">
             <span class="">
-              <input id="time-20-21" type="radio" name="time" class="rounded-full text-green-600 border-green-600 border-green-600 focus:outline-none focus:border-none focus:ring-0 ">
+              <input id="time-20-21" type="radio" onchange="timeCheckIn(this)" value="20:00-21:00" name="time" class="rounded-full text-green-600 border-green-600 border-green-600 focus:outline-none focus:border-none focus:ring-0 ">
               <label  for="time-20-21">
                 20:00-21:00
               </label>
@@ -211,37 +212,39 @@
   </div>
   <div class="w-full md:w-1/3 mt-16">
     <div class="ml-4 border flex flex-col h-fit gap-8">
-      <img src="/assets/images/room1.jpeg" class="w-full" alt="...">
+      <img id="imgBooking" src="/assets/images/room1.jpeg" class="w-full" alt="...">
       <div class=" px-4">
         <h1 class="text-[#606060] text-sm font-medium">Booking Details</h1>
         <div class="flex justify-between text-xs text-[#958A99] py-2">
           <span class="">Room</span>
-          <span class="">1</span>
+          <span id="room-id" class="">1</span>
         </div>
         <div class="flex justify-between text-xs text-[#958A99] py-2">
           <span class="">Check-in</span>
-          <span class="">05/12/2022, from 11:00 am</span>
+          <span class=""><span id="check-in">05/12/2022</span>, from <span id="check-in-time" >10:00 am</span></span>
         </div>
         <div class="flex justify-between text-xs text-[#958A99] py-2">
           <span class="">Check-out</span>
-          <span class="">05/14/2022, from 10:00 am</span>
+          <span class=""><span id="check-out">05/12/2022</span>, from <span id="check-out-time" >11:00 am</span></span>
         </div>
         <div class="flex justify-between text-xs text-[#958A99] py-2">
           <span class="">Days</span>
-          <span class="">2</span>
+          <span id="days" class="">2</span>
+        </div>
+        <div class="flex justify-between text-xs font-semibold text-gray-500 py-2">
+          <span class="">total</span>
+          <span id="total" class=""></span>
         </div>
       </div>
     <div class="flex justify-center my-6">
-      <button type="button" class="inline-flex items-center justify-center px-2 py-2 mx-6 border border-[#F97316] text-sm text-white font-medium rounded shadow-sm bg-[#F97316] hover:text-white hover:bg-[#F97316]">PROCEED TO CHECKOUT</button>
+      <button type="submit" class="inline-flex items-center justify-center px-2 py-2 mx-6 border border-[#F97316] text-sm text-white font-medium rounded shadow-sm bg-[#F97316] hover:text-white hover:bg-[#F97316]">PROCEED TO CHECKOUT</button>
     </div>
     </div>
-
   </div>
-
-</div>
+</form>
 <jsp:include page="../../component/footer.jsp"/>
-
+<script src="${pageContext.request.contextPath}/user/js/booking.js"></script>
+<script src = "${pageContext.request.contextPath}/user/js/alert.js"></script>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 </body>
-
 </html>

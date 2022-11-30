@@ -9,13 +9,10 @@ import jakarta.servlet.annotation.*;
 import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/details","/admin/room/one/details","/admin/room/one", "/admin/room/delete", "/admin/room/delete/image"})
+@WebServlet({"/admin/room/store", "/admin/room/update", "/admin/room/get","/admin/room/details","/admin/room/one/details","/admin/room/one", "/admin/room/delete", "/admin/room/delete/image","/room/details"})
 @MultipartConfig
 public class RoomServlet extends HttpServlet {
     public static final String IMAGES_FOLDER = "/assets/uploads/rooms";
@@ -54,6 +51,7 @@ public class RoomServlet extends HttpServlet {
             case "/admin/room/update": updateRoomController(request,response); break;
             case "/admin/room/delete":  destroyRoomController(request, response); break;
             case "/admin/room/delete/image":  deleteRoomImageController(request, response); break;
+            case "/room/details":  getRoomDetailsController(request, response); break;
         }
     }
 
@@ -96,8 +94,17 @@ public class RoomServlet extends HttpServlet {
         out.println(json);
         out.flush();
     }
+
+    private void getRoomDetailsController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        PrintWriter out = response.getWriter();
+        int idRoom = request.getParameter("id_room") != null ? Integer.parseInt(request.getParameter("id_room")):-1;
+        HashMap<String, Object> rooms = RoomService.getRoomDetails(idRoom);
+
+        String json = new Gson().toJson(rooms);
+        out.println(json);
+        out.flush();
+    }
     private void getOneRoomWithDetailsController(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        System.out.println(request.getParameter("id")+"hello");
         int idRoom = request.getParameter("id") != null ? DataConverter.parseInt(request.getParameter("id")):-1;
         ResultSet rsRooms = RoomService.getOneRoomWithDetailsService(idRoom);
         PrintWriter out = response.getWriter();

@@ -30,13 +30,14 @@
 <jsp:include page="../../component/nav.jsp"/>
 <jsp:include page="patails/slider.jsp"/>
 <div class="md:w-8/12 w-full px-6 mx-auto mt-16 flex">
+    <jsp:include page="../../component/alert/alert.jsp"/>
     <div class="w-2/3">
         <div class='flex justify-between '>
             <h4 class='text-sm'>
                 <a href='#' class='font-semibold text-lg text-gray-800 hover:text-gray-600'> Single Room </a>
             </h4>
             <h4 class='text-sm font-medium text-gray-500 '>
-                <span class='text-lg font-semibold text-gray-800'>$15 <span class='text-sm text-gray-700'>/Per night</span></span>
+                <span class='text-lg font-semibold text-gray-800' id="total-rate">$15 <span class='text-sm text-gray-700'>/Per night</span></span>
 
             </h4>
         </div>

@@ -30,7 +30,6 @@
   <jsp:param name="current" value="explore"/>
 </jsp:include>
 <jsp:include page="patails/booking.jsp" />
-<div class='text-gray-600 font-normal flex justify-between '><span class='border border-dashed p-1'><i class='fa fa-bath fa-lg text-gray-600'></i> </span></div>
 <jsp:include page="../../component/footer.jsp" />
 
 

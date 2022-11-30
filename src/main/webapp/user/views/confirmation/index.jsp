@@ -33,23 +33,23 @@
   <div class="w-1/2 border mx-auto">
    <h1 class="text-sm font-medium w-full text-center text-gray-800 my-4">Booking Details</h1>
     <div class="flex flex-col justify-around w-full flex-wrap text-xs my-4 ml-4">
-        <span class="flex "><p class="text-[#958AA6] w-5/12 ">Full Name : </p> <p class="w-1/2">Abdelmajid EL AYACHI</p></span>
-        <span class="flex"><p class="text-[#958AA6]  w-5/12">email : </p> <p class="w-1/2">elayachi@gmail.Com</p></span>
-      <span class="flex"><p class="text-[#958AA6]  w-5/12">phone : </p><p class="w-1/2">0660606060</p> </span>
+        <span class="flex "><p class="text-[#958AA6] w-5/12 ">Full Name : </p> <p class="w-1/2" id="full-name">Abdelmajid EL AYACHI</p></span>
+        <span class="flex"><p class="text-[#958AA6]  w-5/12">email : </p> <p class="w-1/2" id="email">elayachi@gmail.Com</p></span>
+      <span class="flex"><p class="text-[#958AA6]  w-5/12">phone : </p><p class="w-1/2" id="tel">0660606060</p> </span>
     </div>
     <div class="flex flex-col justify-around flex-wrap text-xs my-4 ml-4">
-      <span class="flex"><p class="text-[#958AA6]  w-5/12">Room : </p> <p class="w-1/2"> Single Room</p></span>
-      <span class="flex"><p class="text-[#958AA6]  w-5/12">check-in : </p><p class="w-1/2"> 05/12/2022, from 11:00 am </p></span>
-      <span class="flex"><p class="text-[#958AA6]  w-5/12">check-out : </p><p class="w-1/2"> 05/14/2022, from 11:00 am</p> </span>
+      <span class="flex"><p class="text-[#958AA6]  w-5/12">Room : </p> <p class="w-1/2" id="name-room"> Single Room</p></span>
+      <span class="flex"><p class="text-[#958AA6]  w-5/12">check-in : </p><p class="w-1/2" id="check-in"> 05/12/2022, from 11:00 am </p></span>
+      <span class="flex"><p class="text-[#958AA6]  w-5/12">check-out : </p><p class="w-1/2" id="check-out"> 05/14/2022, from 11:00 am</p> </span>
     </div>
     <div class="flex flex-col justify-around flex-wrap text-xs my-4 ml-4">
 
       <span class="flex"><p class="text-[#958AA6]  w-5/12">Arrival : </p><p class="w-1/2">10:00 - 11:00</p></span>
-      <span class="flex"><p class="text-[#958AA6]  w-5/12">Additional Services : </p><p class="w-1/2"> breakfast</p></span>
+      <span class="flex"><p class="text-[#958AA6]  w-5/12">Additional Services : </p><p class="w-1/2" id="extras"> breakfast</p></span>
       <span class="flex"><p class="text-[#958AA6] w-5/12">Requests : </p><p class="w-1/2"> I want some thing lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem </p></span>
     </div>
     <div class="flex flex-col justify-around flex-wrap text-sm my-4 ml-4">
-      <span class="flex"><p class="font-semibold w-5/12">Total price : </p><p class="w-1/2">$200</p> </span>
+      <span class="flex"><p class="font-semibold w-5/12">Total price : </p>$<p class="w-1/2" id="total-rate"></p></span>
     </div>
   </div>
     <div class="flex justify-center my-6">
@@ -61,6 +61,48 @@
 </div>
 <jsp:include page="../../component/footer.jsp"/>
 <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+<script type="text/javascript">
+    getBookingData()
+    function getBookingData(){
+        // url = http://localhost:8080/checkout?matricule=BO-13603997&start=2022-11-26&end=2022-11-27&room=64
+        let url = new URL(window.location.href);
+        let matricule = url.searchParams.get("matricule");
+        console.log(matricule);
+        $.ajax({
+            url : "/booking/room/details",
+            type : "GET",
+            data:{
+                matricule: matricule
+            },
+            success : function (response){
+                const dataRoom = JSON.parse(response).data[0];
+                const extras = dataRoom.extras;
+                console.log(dataRoom);
+                $("#full-name").text(dataRoom.firstname + " " + dataRoom.lastname)
+                $("#email").text(dataRoom.email)
+                $("#tel").text(dataRoom.tel)
+                $("#name-room").text(dataRoom.type_room+" Room")
+                $("#check-in").text(dataRoom.start_date)
+                $("#check-out").text(dataRoom.end_date)
+
+                $("#total-rate").text(dataRoom.rate)
+                let result = "";
+                for (const extra in extras) {
+                    result += extras[extra].type_extra + ", ";
+                }
+                result = result.substring(0, result.length - 2);
+                $("#extras").text(result)
+
+
+
+            },
+            error : function (error){
+                console.error(error)
+            }
+        })
+
+    }
+</script>
 </body>
 
 </html>

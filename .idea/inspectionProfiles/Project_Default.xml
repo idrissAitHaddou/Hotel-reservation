@@ -2,7 +2,7 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="AutoCloseableResource" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,com.example.hotelholidayv1.DB.Connection,connect,com.example.hotelholidayv1.DAO.Connection,connect,com.example.hotelholidayv1.user.UserRepository,all|checkPassword|login" />
+      <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,com.example.hotelholidayv1.DB.Connection,connect,com.example.hotelholidayv1.DAO.Connection,connect,com.example.hotelholidayv1.user.UserRepository,all|checkPassword|login,com.example.hotelholidayv1.room.RoomService,checkRoomAvailability" />
     </inspection_tool>
     <inspection_tool class="CssInvalidAtRule" enabled="false" level="ERROR" enabled_by_default="false" />
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">

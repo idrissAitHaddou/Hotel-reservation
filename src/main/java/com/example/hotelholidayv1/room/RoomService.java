@@ -1,6 +1,8 @@
 package com.example.hotelholidayv1.room;
 
 
+import com.example.hotelholidayv1.helpers.DataConverter;
+import com.example.hotelholidayv1.helpers.Methods;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
@@ -10,9 +12,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RoomService {
     public static ResultSet getAllRoomService(int id) {
@@ -22,9 +23,35 @@ public class RoomService {
 
         return RoomRepository.allWithImagesAndRates(startDate, endDate);
     }
+    // check availability of a room with id
+    public static ResultSet checkRoomAvailability(String startDate, String endDate,int idRoom){
+        return RoomRepository.checkAvailability(startDate,endDate,idRoom);
+    }
     public static ResultSet getOneRoomWithDetailsService(int idRoom) {
 
         return RoomRepository.roomWithImagesAndRates(idRoom);
+    }
+
+    public static HashMap<String,Object> getRoomDetails(int idRoom) throws SQLException {
+
+        ResultSet rooms = RoomRepository.all(idRoom);
+        List<HashMap<String,Object>> roomList = DataConverter.toList(rooms);
+        if(roomList.size() > 0){
+            HashMap<String,Object> room = roomList.get(0);
+            ResultSet images = getAllImageService(idRoom);
+            room.put("images",DataConverter.toList(images));
+            ResultSet rates = getAllRatesRoomService(idRoom);
+            List<HashMap<String, Object>> ratesList = DataConverter.toList(rates);
+            double totalPrice = 0;
+            for (HashMap<String, Object> rate : ratesList) {
+                totalPrice += (double) rate.get("rate");
+            }
+            room.put("avg",totalPrice/ratesList.size());
+            room.put("rates",ratesList);
+            return room;
+        }
+       return null;
+
     }
     public static ResultSet getAllImageService(int idRoom){
         return RoomRepository.allImages(idRoom);
@@ -72,6 +99,11 @@ public class RoomService {
                 return content.substring( content.indexOf( "=" ) + 2, content.length() - 1 );
         }
         return "Default.file";
+    }
+
+    /*get room rates from start date to end date*/
+    public static ResultSet getRateByDateService(String startDate, String endDate, int idRoom){
+        return RoomRepository.getRateByDate(startDate,endDate,idRoom);
     }
 
     public static boolean updateRoomService(Room room,HttpServletRequest request, String uploadPath) throws SQLException {
