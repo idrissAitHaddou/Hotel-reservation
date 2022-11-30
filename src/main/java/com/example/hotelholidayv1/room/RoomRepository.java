@@ -33,6 +33,15 @@ public class RoomRepository extends DAOManager {
         System.out.println(query);
         return get(query);
     }
+
+    static ResultSet getRateByDate(String startDate,String endDate,int idRoom){
+        StringBuilder query = new StringBuilder("SELECT * FROM room_rates ");
+        if(startDate != null && endDate != null && idRoom != -1){
+            query.append("WHERE room_id = ").append(idRoom).append(" and start_date <= '"+startDate+"' and end_date >='"+startDate+"'  or end_date >= '"+startDate+"' and end_date <= '"+ endDate +"' or start_date >='"+startDate+"' and start_date <= '"+ endDate +"' or start_date <= '"+ endDate +"' and end_date >= '"+ endDate +"'");
+        }
+        query.append(";");
+        return get(query);
+    }
     static boolean save(Room room, List<String> images) throws SQLException {
         StringBuilder query = new StringBuilder("INSERT INTO rooms ( room_number, floor_number, promo_id, type_room ) values(");
         query.append(room.room_number);
@@ -128,8 +137,13 @@ public class RoomRepository extends DAOManager {
     static ResultSet allImagesWithId(int imageId){
 
         StringBuilder query = new StringBuilder("SELECT * FROM images");
-        query.append(" WHERE id_image = ").append(id);
+        query.append(" WHERE id_image = ").append(imageId);
         query.append(";");
+        return get(query);
+    }
+    // check availability of a room
+    static ResultSet checkAvailability(String startDate, String endDate,int idRoom){
+        StringBuilder query = new StringBuilder("SELECT * FROM rooms where '"+startDate+"' >= now() and rooms.id_room not in (select room_id from room_bookings where booking_id in (select id_booking from bookings where start_date between '"+startDate+"' and '"+endDate+"' or end_date between '"+startDate+"' and '"+endDate+"')) and rooms.id_room = "+idRoom);
         return get(query);
     }
 }
